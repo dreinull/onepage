@@ -1,0 +1,4 @@
+<?php
+
+namespace Onepage\Controller;
+
