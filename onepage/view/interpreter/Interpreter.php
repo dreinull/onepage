@@ -14,6 +14,8 @@ class Interpreter {
 
     private $rightDelimiter = ' }}';
 
+    private $templateFolder;
+    
     private $templateName;
 
     private $fileName;
@@ -25,6 +27,7 @@ class Interpreter {
     private $output;
 
     public function open() {
+        $this->file = createPath($this->templateFolder, $this->templateFile);
         $this->input = file_get_contents($this->file);
     }
 
@@ -38,7 +41,4 @@ class Interpreter {
         }
         $this->output = str_replace($this->find, $this->replace, $this->input);
     }
-
-    
-
 }

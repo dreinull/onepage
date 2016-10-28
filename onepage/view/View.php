@@ -6,5 +6,5 @@ class View {
     
     private $sections;
 
-
+    
 }

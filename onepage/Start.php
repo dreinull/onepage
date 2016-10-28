@@ -32,7 +32,7 @@ class Start {
         define('root_path', Help::createPath(__DIR__, '..'));
         define('config_path', Help::createPath(root_path, 'config'));
         define('database_path', Help::createPath(root_path, 'onepage', 'database'));
-        define('template_path', Help::createPath(root_path, 'onepage', 'view'));
+        define('template_path', Help::createPath(root_path, 'onepage', 'template'));
         define('database_file', database_path . DIRECTORY_SEPARATOR . 'database.sqlite');
         define('install_file', config_path . DIRECTORY_SEPARATOR . '.install');
         define('reset_file', config_path . DIRECTORY_SEPARATOR . '.reset');

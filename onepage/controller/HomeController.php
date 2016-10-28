@@ -7,7 +7,7 @@ use Onepage\Model\Section;
 class HomeController {
     public function home() {
         $sections = Section::select()->get();
-        var_dump($sections); die();
+        var_dump($sections);
         include(template_path . '/page.php');
     } 
 
