@@ -12,15 +12,12 @@ class Section extends Model {
             $this->where('visible', 1);
         }
 
+        $this->orderBy('order');
+
         $entries = parent::get();
         foreach ($entries as $section) {
-            $section->contents = (object) Content::select()->where('section_id', $section->id)->get();
-            foreach ($section->contents as $content) {
-                $key = $content->key;
-                $section->$key = $content->value;
-            }
+            $section->content = Content::select()->getAll();
         }
-        
         return $entries;
     }
 

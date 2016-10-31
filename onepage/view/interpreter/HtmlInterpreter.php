@@ -2,8 +2,16 @@
 
 namespace Onepage\View\Interpreter;
 
-class HtmlInterpreter {
+class HtmlInterpreter extends Interpreter {
 
-    private $fileName = 'template.tpl';
+    public $fileName = 'template.tpl';
+
+    public static function run($section) {
+        $interpreter = new static;
+        $interpreter->templateFolder = $section->template;
+        $interpreter->content = $section->content;
+
+        return $interpreter->open()->replace()->get();
+    }
    
 }

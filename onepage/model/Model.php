@@ -8,6 +8,8 @@ abstract class Model {
 
     public $table;
 
+    private $joins = [];
+
     private $filters = [];
 
     private $orders = [];
@@ -27,6 +29,22 @@ abstract class Model {
         $this->run();
         
         return $this->entries;
+    }
+
+    public function leftJoin($foreignTable, $localKey, $foreignKey) {
+        $this->joins[] = 'LEFT JOIN ' . $foreignTable . ' ON ' . $this->table . '.' . $localKey . '=' . $foreignTable . '.' . $foreignKey;
+    }
+
+    public function rightJoin($foreignTable, $localKey, $foreignKey) {
+        $this->joins[] = 'RIGHT JOIN ' . $foreignTable . ' ON ' . $this->table . '.' . $localKey . '=' . $foreignTable . '.' . $foreignKey;
+    }
+
+    public function innerJoin($foreignTable, $localKey, $foreignKey) {
+        $this->joins[] = 'INNER JOIN ' . $foreignTable . ' ON ' . $this->table . '.' . $localKey . '=' . $foreignTable . '.' . $foreignKey;
+    }
+
+    public function fullJoin($foreignTable, $localKey, $foreignKey) {
+        $this->joins[] = 'FULL OUTER JOIN ' . $foreignTable . ' ON ' . $this->table . '.' . $localKey . '=' . $foreignTable . '.' . $foreignKey;
     }
 
     public function where($key, $val) {
@@ -75,7 +93,7 @@ abstract class Model {
     }
 
     public function orderBy($value, $order = 'ASC') {
-        $this->orders[] = 'ORDER BY ' . $value . ' ' . $order;
+        $this->orders[] = 'ORDER BY `' . $value . '` ' . $order;
     }
 
     private function formatValue($key) {
@@ -87,6 +105,9 @@ abstract class Model {
         $requestParts[] = '*';
         $requestParts[] = 'from';
         $requestParts[] = $this->table;
+        foreach ($this->joins as $join) {
+            $requestParts[] = $join;
+        }
         foreach ($this->filters as $filter) {
             $requestParts[] = $filter;
         }
@@ -97,6 +118,7 @@ abstract class Model {
     }
 
     public function run() {
+        //var_dump($this->request);
         $this->entries = Capsule::select($this->request);
     }
 

@@ -45,10 +45,11 @@ class Routes {
         $routes->add('admin', new Route('/admin', ['controller' => 'AdminController@index']));
         $routes->add('admin-page', new Route('/admin/page/{id}', ['controller' => 'AdminController@page']));+
         $routes->add('admin-settings', new Route('/admin/settings', ['controller' => 'AdminController@settings']));
-        
-        $routes->add('home', new Route('/', ['controller' => 'HomeController@home']));
-        
-        
+
+        $routes->add('home', new Route('/', ['controller' => 'PageController@home']));
+        $routes->add('page', new Route('/{slug}', ['controller' => 'PageController@page']));
+
+
         return $routes;
         
     }

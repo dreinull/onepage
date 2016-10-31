@@ -2,43 +2,47 @@
 
 namespace Onepage\View\Interpreter;
 
-class Interpreter {
+abstract class Interpreter {
 
-    private $values;
+    public $content;
     
-    private $find = [];
+    public $find = [];
 
-    private $replace = [];
+    public $replace = [];
 
-    private $leftDelimiter = '{{ ';
+    public $leftDelimiter = '{{ ';
 
-    private $rightDelimiter = ' }}';
+    public $rightDelimiter = ' }}';
 
-    private $templateFolder;
+    public $templateFolder;
     
-    private $templateName;
-
-    private $fileName;
+    public $fileName;
     
-    private $file;
+    public $file;
 
-    private $input;
+    public $input;
 
-    private $output;
+    public $output;
 
     public function open() {
-        $this->file = createPath($this->templateFolder, $this->templateFile);
+        $this->file = createPath(template_path, $this->templateFolder, $this->fileName);
         $this->input = file_get_contents($this->file);
+        return $this;
     }
 
     public function replace() {
-        foreach($this->values as $key => $val) {
+        foreach($this->content as $key => $value) {
             $this->find[] =
                 $this->leftDelimiter .
                 $key .
                 $this->rightDelimiter;
-            $this->replace[] = $val;
+            $this->replace[] = $value;
         }
         $this->output = str_replace($this->find, $this->replace, $this->input);
+        return $this;
+    }
+
+    public function get() {
+        return $this->output;
     }
 }

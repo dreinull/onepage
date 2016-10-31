@@ -58,18 +58,84 @@ class Installer {
             echo 'Section-Tabelle bereits vorhanden';
         }
         
-        if(!$this->schema->hasTable('contents')) {
-            $this->schema->create('contents', function($table) {
+        if(!$this->schema->hasTable('contents_string')) {
+            $this->schema->create('contents_string', function($table) {
                 $table->increments('id');
-                $table->integer('section_id');
+                $table->integer('section_id')->unsigned();
                 $table->string('key');
                 $table->string('value');
                 $table->timestamps();
             });
-            echo 'Content-Tabelle erstellt.';
+            echo 'Content-Tabelle für Strings erstellt.';
         } else {
-            echo 'Content-Tabelle bereits vorhanden';
+            echo 'Content-Tabelle für Strings bereits vorhanden';
         }
+
+        if(!$this->schema->hasTable('contents_text')) {
+            $this->schema->create('contents_text', function($table) {
+                $table->increments('id');
+                $table->integer('section_id')->unsigned();
+                $table->string('key');
+                $table->text('value');
+                $table->timestamps();
+            });
+            echo 'Content-Tabelle für Texte erstellt.';
+        } else {
+            echo 'Content-Tabelle für Texte bereits vorhanden';
+        }
+
+        if(!$this->schema->hasTable('contents_timestamp')) {
+            $this->schema->create('contents_timestamp', function($table) {
+                $table->increments('id');
+                $table->integer('section_id')->unsigned();
+                $table->string('key');
+                $table->timestamp('value');
+                $table->timestamps();
+            });
+            echo 'Content-Tabelle für Timestamps erstellt.';
+        } else {
+            echo 'Content-Tabelle für Timpestamps bereits vorhanden';
+        }
+
+        if(!$this->schema->hasTable('contents_integer')) {
+            $this->schema->create('contents_integer', function($table) {
+                $table->increments('id');
+                $table->integer('section_id')->unsigned();
+                $table->string('key');
+                $table->integer('value');
+                $table->timestamps();
+            });
+            echo 'Content-Tabelle für Integer erstellt.';
+        } else {
+            echo 'Content-Tabelle für Integer bereits vorhanden';
+        }
+
+        if(!$this->schema->hasTable('contents_float')) {
+            $this->schema->create('contents_float', function($table) {
+                $table->increments('id');
+                $table->integer('section_id')->unsigned();
+                $table->string('key');
+                $table->float('value');
+                $table->timestamps();
+            });
+            echo 'Content-Tabelle für Float erstellt.';
+        } else {
+            echo 'Content-Tabelle für Float bereits vorhanden';
+        }
+
+        if(!$this->schema->hasTable('contents_boolean')) {
+            $this->schema->create('contents_boolean', function($table) {
+                $table->increments('id');
+                $table->integer('section_id')->unsigned();
+                $table->string('key');
+                $table->boolean('value');
+                $table->timestamps();
+            });
+            echo 'Content-Tabelle für Boolean erstellt.';
+        } else {
+            echo 'Content-Tabelle für Boolean bereits vorhanden';
+        }
+
         return $this;
     }
     
@@ -86,13 +152,16 @@ class Installer {
             'visible' => 1,
             'template' => 'example',
             'name' => 'Bereich 1',
-            'head' => 'Eine erste Überschrift',
-            'body' => 'Ein schöner Inhalt. Er gefällt mir sehr.',
         ]);
-        Capsule::table('contents')->insert([
+        Capsule::table('contents_string')->insert([
             'section_id' => '1',
-            'key' => 'Datum',
-            'value' => '03.10.2016',
+            'key' => 'head',
+            'value' => 'Meine Überschrift',
+        ]);
+        Capsule::table('contents_text')->insert([
+            'section_id' => '1',
+            'key' => 'body',
+            'value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec ullamcorper sapien. Sed et nulla mattis, facilisis enim eu, fermentum neque. Vestibulum non odio vestibulum, aliquet ligula at, sagittis tellus. Aliquam lacus erat, eleifend in justo ut, feugiat aliquam purus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris nec tortor laoreet, interdum quam vitae, vestibulum purus. Vivamus erat dolor, sagittis condimentum metus a, commodo vehicula tellus. Donec venenatis, nunc id commodo bibendum, quam ligula scelerisque massa, eget mollis quam nisi nec mi. Sed eu elit aliquam, pharetra purus vel, lacinia ex.',
         ]);
         return $this;
     }

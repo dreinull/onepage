@@ -3,12 +3,13 @@
 namespace Onepage\Controller;
 
 use Onepage\Model\Section;
+use Onepage\View\View;
 
-class HomeController {
+class PageController {
     public function home() {
         $sections = Section::select()->get();
-        var_dump($sections);
-        include(template_path . '/page.php');
+        $view = new View($sections);
+
     } 
 
 }
