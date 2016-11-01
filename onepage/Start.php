@@ -36,6 +36,7 @@ class Start {
         define('database_file', database_path . DIRECTORY_SEPARATOR . 'database.sqlite');
         define('install_file', config_path . DIRECTORY_SEPARATOR . '.install');
         define('reset_file', config_path . DIRECTORY_SEPARATOR . '.reset');
+        define('admin_template_path', Help::createPath(root_path, 'onepage', 'admin', 'templates'));
         return true;
     }
 
