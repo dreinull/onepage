@@ -5,7 +5,9 @@ namespace Onepage\Controller;
 class AdminController {
     public function index() {
         
-        include createPath(admin_template_path, 'start.php');
+        $template = createPath(admin_template_path, 'start.php');
+        $content = 'Hier ist mein Content';
+        echo \Onepage\View\Interpreter\Interpreter::run($template, compact('content'));
     }
     
     public function page($id) {

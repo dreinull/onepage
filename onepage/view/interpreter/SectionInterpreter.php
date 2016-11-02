@@ -2,7 +2,7 @@
 
 namespace Onepage\View\Interpreter;
 
-class HtmlInterpreter extends Interpreter {
+class SectionInterpreter extends Interpreter {
 
     public $fileName = 'template.tpl';
 

@@ -2,29 +2,68 @@
 
 namespace Onepage\View;
 
-use Onepage\View\Interpreter\HtmlInterpreter;
+use Onepage\View\Interpreter\SectionInterpreter;
 
 class View {
     
-    private $sections;
+    private $start = [];
+    
+    private $header = [];
 
-    private $sectionOutput = [];
-
-    public function __construct($sections) {
-        $this->sections = $sections;
-        $this->interpretSections();
-        $this->doTemplateStuff();
+    private $navigation = [];
+    
+    private $content = [];
+    
+    private $footer = [];
+    
+    private $scripts = [];
+    
+    private $end = [];
+    
+    public function render() {
+        return implode([
+            implode($this->start),
+            implode($this->header),
+            implode($this->navigation),
+            implode($this->content),
+            implode($this->footer),
+            implode($this->scripts),
+            implode($this->end),
+        ]);
     }
-
-    private function interpretSections() {
-        foreach ($this->sections as $section) {
-            $this->sectionOutput[] = HtmlInterpreter::run($section);
-        }
-
+    
+    public function addStart($line) {
+        if(!$line) return;
+        $this->start[] = $line;
     }
-
-    private function doTemplateStuff() {
-        $sections = $this->sectionOutput;
-        include template_path . DIRECTORY_SEPARATOR . 'page.php';
+    
+    public function addHeader($line) {
+        if(!$line) return;
+        $this->header[] = $line;
+    }
+    
+    public function addNavigation($line) {
+        if(!$line) return;
+        $this->navigation[] = $line;
+    }
+    
+    public function addContent($line) {
+        if(!$line) return;
+        $this->content[] = $line;
+    }
+    
+    public function addFooter($line) {
+        if(!$line) return;
+        $this->footer[] = $line;
+    }
+    
+    public function addScript($line) {
+        if(!$line) return;
+        $this->scripts[] = $line;
+    }
+    
+    public function addEnd($line) {
+        if(!$line) return;
+        $this->end[] = $line;
     }
 }

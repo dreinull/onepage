@@ -1,0 +1,21 @@
+{
+    "name": "Example",
+    "description": "Ein kleiner Test, ob auch alles funktioniert",
+    "fields": [
+        {
+            "name": "head",
+            "type": "string",
+            "placeholder": "Eine Überschrift"
+        },
+        {
+            "name": "body",
+            "type": "text",
+            "placeholder": "Fließtext"
+        },
+        {
+            "name": "date",
+            "type": "timestamp",
+            "placeholder": "Ein Datum"
+        }
+    ]
+}

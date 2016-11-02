@@ -2,7 +2,7 @@
 
 namespace Onepage\View\Interpreter;
 
-abstract class Interpreter {
+class Interpreter {
 
     public $content;
     
@@ -44,5 +44,13 @@ abstract class Interpreter {
 
     public function get() {
         return $this->output;
+    }
+    
+    public static function run($file, $content) {
+        $interpreter = new self;
+        
+        $interpreter->input = $file;
+        $interpreter->content = $content;
+        return $interpreter->replace()->get();
     }
 }
