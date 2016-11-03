@@ -3,7 +3,8 @@
 namespace Onepage\View;
 
 use Onepage\View\Interpreter\Interpreter;
-use Onepage\View\Interpreter\SectionInterpreter;
+use Onepage\View\Interpreter\Start;
+use Onepage\View\Interpreter\Section;
 
 class Frontend extends View {
     
@@ -17,7 +18,7 @@ class Frontend extends View {
     }
     
     public function loadDefaults() {
-        $this->addStart($this->interpretStart());
+        $this->addStart(Start::run($this->readTemplate('start.php')));
         $this->addEnd($this->readTemplate('end.php'));
     }
     
@@ -28,7 +29,7 @@ class Frontend extends View {
     }
 
     private function interpretStart() {
-        return Interpreter::run(
+        return Start::run(
             $this->readTemplate('start.php'), [
                 'title' => \Onepage\Config::app('name'),
                 'description' => \Onepage\Config::app('description'),
@@ -39,7 +40,7 @@ class Frontend extends View {
 
     private function interpretSections() {
         foreach ($this->sections as $section) {
-            $this->addContent(SectionInterpreter::run($section));
+            $this->addContent(Section::run($section));
         }
 
     }

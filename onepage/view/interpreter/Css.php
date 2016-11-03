@@ -2,7 +2,7 @@
 
 namespace Onepage\View\Interpreter;
 
-class CssInterpreter extends Interpreter {
+class Css extends Interpreter {
 
     private $fileName = 'style.tpl';
     

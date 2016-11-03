@@ -2,7 +2,7 @@
 
 namespace Onepage\View\Interpreter;
 
-class BackendInterpreter extends Interpreter {
+class Backend extends Interpreter {
     public function __construct($fields) {
         
     }
