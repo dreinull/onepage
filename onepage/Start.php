@@ -15,8 +15,8 @@ class Start {
     public function getThisPartyStarted() {
         // Everything important to boot is here
         $steps = [
-            'defineConstants',
             'loadHelpers',
+            'defineConstants',
             'connectToDatabase',
             'checkForInstall',
         ];
@@ -28,21 +28,21 @@ class Start {
         }       
     }
     
+    public function loadHelpers() {
+        include __DIR__ . DIRECTORY_SEPARATOR . 'helpers.php';
+    }
+
     public function defineConstants() {
-        define('root_path', Help::createPath(__DIR__, '..'));
-        define('config_path', Help::createPath(root_path, 'config'));
-        define('database_path', Help::createPath(root_path, 'onepage', 'database'));
-        define('template_path', Help::createPath(root_path, 'onepage', 'template'));
+        define('root_path', createPath(__DIR__, '..'));
+        define('config_path', createPath(root_path, 'config'));
+        define('database_path', createPath(root_path, 'onepage', 'database'));
+        define('template_path', createPath(root_path, 'template'));
         define('database_file', database_path . DIRECTORY_SEPARATOR . 'database.sqlite');
         define('install_file', config_path . DIRECTORY_SEPARATOR . '.install');
         define('reset_file', config_path . DIRECTORY_SEPARATOR . '.reset');
-        define('admin_template_path', Help::createPath(root_path, 'onepage', 'admin', 'templates'));
-        define('helper_template_path', Help::createPath(root_path, 'onepage', 'view', 'helpers'));
+        define('admin_template_path', createPath(root_path, 'onepage', 'admin', 'templates'));
+        define('helper_template_path', createPath(root_path, 'onepage', 'view', 'helpers'));
         return true;
-    }
-
-    public function loadHelpers() {
-        include __DIR__ . DIRECTORY_SEPARATOR . 'helpers.php';
     }
 
     public function connectToDatabase() {

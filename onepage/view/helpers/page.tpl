@@ -1,1 +1,0 @@
-<a href="#{{ slug }}"><li>{{ name }}</a>

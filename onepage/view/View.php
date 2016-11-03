@@ -2,90 +2,51 @@
 
 namespace Onepage\View;
 
-use Onepage\View\Interpreter\SectionInterpreter;
+abstract class View {
+    
+    public $data = [];
 
-class View {
-    
-    private $start = [];
-    
-    private $header = [];
+    public $templatesPath;
 
-    private $navigation = [];
-    
-    private $content = [];
-    
-    private $footer = [];
-    
-    private $scripts = [];
-    
-    private $end = [];
-    
-    public static function create() {
-        return self;
+    public $templateName;
+
+    public $fileName;
+
+    public $path;
+
+    public function __construct($name) {
+
+        var_dump($this->templateName);
+
     }
-    
-    public function render() {
-        return implode([
-            implode($this->start),
-            implode($this->header),
-            implode($this->navigation),
-            implode($this->content),
-            implode($this->footer),
-            implode($this->scripts),
-            implode($this->end),
-        ]);
-        return $this;
+
+    public static function make($name, $data = null) {
+
+        $view = new static($name);
+        $view->data = $data;
+        $view->display();
     }
-    
-    public function addStart($line) {
-        if(!$line) return;
-        $this->start[] = $line;
-        return $this;
+
+    public function setFile($file) {
+        $this->file = $file;
     }
-    
-    public function addHeader($line) {
-        if(!$line) return;
-        $this->header[] = $line;
-        return $this;
+
+    public function setData($data) {
+        $this->data = $data;
     }
-    
-    public function addNavigation($line) {
-        if(!$line) return;
-        $this->navigation[] = $line;
-        return $this;
+
+    public function createPath() {
+        $this->path = createPath(
+            $this->templatesPath,
+            $this->templateName,
+            $this->fileName
+        );
     }
-    
-    public function addContent($line) {
-        if(!$line) return;
-        $this->content[] = $line;
-        return $this;
+
+    public function display() {
+        if($this->path !== FALSE) {
+            extract($this->data);
+            include $this->path;
+        }
     }
-    
-    public function addFooter($line) {
-        if(!$line) return;
-        $this->footer[] = $line;
-        return $this;
-    }
-    
-    public function addScript($line) {
-        if(!$line) return;
-        $this->scripts[] = $line;
-        return $this;
-    }
-    
-    public function addEnd($line) {
-        if(!$line) return;
-        $this->end[] = $line;
-        return $this;
-    }
-    
-    public function addTemplate($template) {
-        $parts = explode('{{ content }}', $template);
-        $this
-            ->addStart($parts[0])
-            ->addEnd($parts[1]);
-        return $this;
-    }
-    
-    
 }

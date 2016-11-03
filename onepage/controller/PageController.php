@@ -3,13 +3,14 @@
 namespace Onepage\Controller;
 
 use Onepage\Model\Section;
-use Onepage\View\Frontend;
+use Onepage\View\Template;
 
 class PageController {
     public function home() {
         $sections = Section::select()->get();
-        $view = new Frontend($sections);
-        echo $view->render();
+
+        $view = Template::make('example', compact('sections'));
+
     } 
 
 }
