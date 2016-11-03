@@ -37,6 +37,7 @@ class Start {
         define('install_file', config_path . DIRECTORY_SEPARATOR . '.install');
         define('reset_file', config_path . DIRECTORY_SEPARATOR . '.reset');
         define('admin_template_path', Help::createPath(root_path, 'onepage', 'admin', 'templates'));
+        define('helper_template_path', Help::createPath(root_path, 'onepage', 'view', 'helpers'));
         return true;
     }
 

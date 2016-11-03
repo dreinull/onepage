@@ -2,12 +2,12 @@
 
 namespace Onepage\Controller;
 
+use Onepage\View\Backend;
+
 class AdminController {
     public function index() {
         
-        $template = createPath(admin_template_path, 'start.php');
-        $content = 'Hier ist mein Content';
-        echo \Onepage\View\Interpreter\Interpreter::run($template, compact('content'));
+        Backend::create();
     }
     
     public function page($id) {

@@ -43,7 +43,8 @@ class Routes {
 
         //Admin stuff first, because the admin is important
         $routes->add('admin', new Route('/admin', ['controller' => 'AdminController@index']));
-        $routes->add('admin-page', new Route('/admin/page/{id}', ['controller' => 'AdminController@page']));+
+        $routes->add('admin-page', new Route('/admin/page', ['controller' => 'AdminController@home']));
+        $routes->add('admin-page', new Route('/admin/page/{id}', ['controller' => 'AdminController@page']));
         $routes->add('admin-settings', new Route('/admin/settings', ['controller' => 'AdminController@settings']));
 
         $routes->add('home', new Route('/', ['controller' => 'PageController@home']));

@@ -14,7 +14,7 @@ class Frontend extends View {
         $this->sections = $sections;
         $this->interpretSections();
         $this->loadDefaults();
-        echo $this->render();
+        return $this;
     }
     
     public function loadDefaults() {
@@ -24,8 +24,10 @@ class Frontend extends View {
     
     public function readTemplate($name) {
         $file = createPath(template_path, $name);
-        if($file)
+        if($file) {
             return file_get_contents($file);
+        }
+        return null;
     }
 
     private function interpretStart() {

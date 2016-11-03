@@ -58,6 +58,21 @@ class Installer {
             echo 'Section-Tabelle bereits vorhanden';
         }
         
+        if(!$this->schema->hasTable('pages')) {
+            $this->schema->create('pages', function($table) {
+                $table->increments('id');
+                $table->integer('parent_id')->nullable();
+                $table->boolean('visible');
+                $table->tinyInteger('order')->unsigned();
+                $table->string('name');
+                $table->string('slug');
+                $table->timestamps();
+            });
+            echo 'Page-Tabelle erstellt.';
+        } else {
+            echo 'Page-Tabelle bereits vorhanden';
+        }
+        
         if(!$this->schema->hasTable('contents_string')) {
             $this->schema->create('contents_string', function($table) {
                 $table->increments('id');

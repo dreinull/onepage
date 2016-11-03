@@ -9,7 +9,7 @@ class PageController {
     public function home() {
         $sections = Section::select()->get();
         $view = new Frontend($sections);
-
+        echo $view->render();
     } 
 
 }
