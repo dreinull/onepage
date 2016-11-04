@@ -1,4 +1,6 @@
 <section>
-    <h1>{{ head }}</h1>
-    <p>{{ body }}</p>
+    <div class="container">
+        <h1><?php echo $head; ?></h1>
+        <p><?php echo $body; ?></p>
+    </div>
 </section>

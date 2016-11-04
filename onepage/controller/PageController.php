@@ -9,7 +9,7 @@ class PageController {
     public function home() {
         $sections = Section::select()->get();
 
-        $view = Template::make('example', compact('sections'));
+        $view = Template::make('page', compact('sections'));
 
     } 
 
