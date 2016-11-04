@@ -22,8 +22,6 @@ function createPath() {
     return realpath(implode(DIRECTORY_SEPARATOR, func_get_args()));
 }
 
-/*function getTemplate($name) {
-    if(is_dir(view_path . DIRECTORY_SEPARATOR . $name)) {
-        if(file_exists)
-    }
-}*/
+function self() {
+    echo htmlspecialchars($_SERVER["PHP_SELF"]);
+}

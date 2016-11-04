@@ -4,13 +4,14 @@ namespace Onepage;
 
 class Config {
     private static $instance = null;
-    private $config; 
+
+    private $app;
+    private $database;
+    private $routes;
 
     public function __construct() {
-        //$this->config = (object) include(config_path . '/database.php');
-        $this->config = new \stdClass();
-        $this->config->app = (object) include(config_path . DIRECTORY_SEPARATOR .  'app.php');
-        $this->config->database = (object) include(config_path . DIRECTORY_SEPARATOR .  'database.php');
+        $this->app = (object) include(config_path . DIRECTORY_SEPARATOR .  'app.php');
+        $this->database = (object) include(config_path . DIRECTORY_SEPARATOR .  'database.php');
     } 
 
     public static function getInstance() {
@@ -22,14 +23,22 @@ class Config {
     }
 
     public static function app($value = null) {
-        if($value == null) {
-            return self::getInstance()->config->app;
-        }
-        return self::getInstance()->config->app->$value;
+        return self::get('app', $value);
     }
 
-    public static function database() {
-        return $this->config->database;
+    public static function database($value = null) {
+        return self::get('database', $value);
+    }
+
+    public static function routes($value = null) {
+        return self::get('routes', $value);
+    }
+
+    public static function get($option, $value = null) {
+        if($value == null) {
+            return self::getInstance()->$option;
+        }
+        return self::getInstance()->$option->$value;
     }
 
 
