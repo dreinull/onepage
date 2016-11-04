@@ -17,6 +17,7 @@ class Installer {
         $installer
             ->resetDatabase()
             ->installTables()
+            ->createOptions()
             ->createUser()
             ->createDefaultContent()
             ->deleteInstallFile();
@@ -151,6 +152,26 @@ class Installer {
             echo 'Content-Tabelle für Boolean bereits vorhanden';
         }
 
+        if(!$this->schema->hasTable('options')) {
+            $this->schema->create('options', function($table) {
+                $table->increments('id');
+                $table->string('key');
+                $table->string('value');
+                $table->timestamps();
+            });
+            echo 'Options-Tabelle für Boolean erstellt.';
+        } else {
+            echo 'Options-Tabelle für Boolean bereits vorhanden';
+        }
+
+        return $this;
+    }
+
+    public function createOptions() {
+        Capsule::table('options')->insert([
+            'key' => 'homeUrl',
+            'value' => 'homeUrl',
+        ]);
         return $this;
     }
     
