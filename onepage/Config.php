@@ -10,8 +10,8 @@ class Config {
     private $routes;
 
     public function __construct() {
-        $this->app = (object) include(config_path . DIRECTORY_SEPARATOR .  'app.php');
-        $this->database = (object) include(config_path . DIRECTORY_SEPARATOR .  'database.php');
+        $this->app = include(config_path . DIRECTORY_SEPARATOR .  'app.php');
+        $this->database = include(config_path . DIRECTORY_SEPARATOR .  'database.php');
     } 
 
     public static function getInstance() {
@@ -22,25 +22,36 @@ class Config {
         return self::$instance;
     }
 
-    public static function app($value = null) {
-        return self::get('app', $value);
+    public static function app($key = null) {
+        return self::get('app', $key);
     }
 
-    public static function database($value = null) {
-        return self::get('database', $value);
+    public static function database($key = null) {
+        return self::get('database', $key);
     }
 
-    public static function routes($value = null) {
-        return self::get('routes', $value);
+    public static function setRoutes($routes) {
+        self::set($routes, 'routes');
+    }
+    
+    public static function routes($key = null) {
+        return self::get('routes', $key);
     }
 
-    public static function get($option, $value = null) {
-        if($value == null) {
+    public static function set($value, $option, $key = null) {
+        if($key == null) {
+            self::getInstance()->$option = $value;
+        } else {
+            self::getInstance()->$option[$key] = $value;
+        }
+    }
+    
+    public static function get($option, $key = null) {
+        if($key == null) {
             return self::getInstance()->$option;
         }
-        return self::getInstance()->$option->$value;
+        $option = self::getInstance()->$option;
+        return $option[$key];
     }
 
-
-    
 }

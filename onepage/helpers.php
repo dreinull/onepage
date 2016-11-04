@@ -23,5 +23,13 @@ function createPath() {
 }
 
 function self() {
-    echo htmlspecialchars($_SERVER["PHP_SELF"]);
+    return htmlspecialchars($_SERVER["PHP_SELF"]);
+}
+
+function route($name, $params = []) {
+    $route = \Onepage\Config::routes($name);
+    foreach($params as $key => $value) {
+        $route = str_replace('{'.$key.'}', $value, $route);
+    }
+    return self() . $route;
 }

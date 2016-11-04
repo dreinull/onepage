@@ -41,6 +41,7 @@ class Start {
         define('install_file', config_path . DIRECTORY_SEPARATOR . '.install');
         define('reset_file', config_path . DIRECTORY_SEPARATOR . '.reset');
         define('admin_template_path', createPath(root_path, 'onepage', 'admin', 'templates'));
+        define('home_url', str_replace('index.php', '', $_SERVER['PHP_SELF']));
         return true;
     }
 

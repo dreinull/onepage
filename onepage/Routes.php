@@ -8,6 +8,7 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Onepage\Config;
 
 
 class Routes {
@@ -54,7 +55,18 @@ class Routes {
         $routes->add('home', new Route('/', ['controller' => 'PageController@home']));
         $routes->add('page', new Route('/{slug}', ['controller' => 'PageController@page']));
 
+
+        $this->setToConfig($routes->all());
+        
         return $routes;
         
+    }
+
+    public function setToConfig($routes) {
+        $collection = [];
+        foreach($routes as $name => $route) {
+            $collection[$name] = $route->getPath();
+        }
+        Config::setRoutes($collection);
     }
 }
