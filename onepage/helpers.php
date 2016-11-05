@@ -23,7 +23,8 @@ function createPath() {
 }
 
 function self() {
-    return htmlspecialchars($_SERVER["PHP_SELF"]);
+    //echo str_replace('/index.php', '', htmlspecialchars($_SERVER["PHP_SELF"]));
+    echo htmlspecialchars($_SERVER["REQUEST_URI"]);
 }
 
 function route($name, $params = []) {
@@ -31,5 +32,5 @@ function route($name, $params = []) {
     foreach($params as $key => $value) {
         $route = str_replace('{'.$key.'}', $value, $route);
     }
-    return self() . $route;
+    return $route;
 }

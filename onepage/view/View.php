@@ -20,7 +20,7 @@ abstract class View {
 
     }
 
-    public static function make($name, $data = null) {
+    public static function make($name, $data = []) {
 
         $view = new static($name);
         $view->data = $data;
