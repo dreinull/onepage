@@ -1,9 +1,9 @@
-<?php include 'start.php'; ?>
-<?php include 'navigation.php'; ?>
+<?php include '_start.php'; ?>
+<?php include '_navigation.php'; ?>
 
     <div class="container">
 
-        <form action="<?php self(); ?>" accept-charset="UTF-8">
+        <form action="<?php echo route('admin-add-page-post') ?>" accept-charset="UTF-8" method="post">
 
             <h1>Seite erstellen</h1>
 
@@ -17,15 +17,9 @@
                 <input type="text" name="slug">
             </div>
 
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="visible"> Sichtbar
-                </label>
-            </div>
-
             <button type="submit" class="btn btn-default">Erstellen</button>
 
         </form>
     </div>
 
-<?php include 'end.php'; ?>
+<?php include '_end.php'; ?>

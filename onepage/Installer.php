@@ -64,7 +64,7 @@ class Installer {
                 $table->increments('id');
                 $table->integer('parent_id')->nullable();
                 $table->boolean('visible');
-                $table->tinyInteger('order')->unsigned();
+                $table->tinyInteger('order')->unsigned()->nullable();
                 $table->string('name');
                 $table->string('slug');
                 $table->timestamps();

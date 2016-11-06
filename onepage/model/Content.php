@@ -26,6 +26,10 @@ class Content extends Model {
         return $values;
     }
 
+    /**
+     * Gets all types content
+     * @return array
+     */
     public function getAll() {
         return array_merge(
             BooleanContent::select()->get(),

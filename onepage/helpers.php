@@ -34,3 +34,15 @@ function route($name, $params = []) {
     }
     return $route;
 }
+
+function tq($name) {
+    return '`' . $name . '`';
+}
+
+function sq($name) {
+    return "'" . $name . "'";
+}
+
+function ec($value) {
+    echo htmlspecialchars($value);
+}

@@ -47,6 +47,7 @@ class Routes {
 
         //Admin stuff first, because the admin is important
         $routes->add('admin', new Route('/admin', ['controller' => 'AdminController@index']));
+        $routes->add('admin-options', new Route('/admin/options', ['controller' => 'AdminController@options']));
         $routes->add('admin-add-page', new Route('/admin/add-page', ['controller' => 'AdminController@addPage']));
         $routes->add('admin-add-page-post', new Route('/admin/added-page', ['controller' => 'AdminController@addPagePost']));
         

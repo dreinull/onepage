@@ -1,11 +1,13 @@
-<?php include 'start.php'; ?>
-<?php include 'navigation.php'; ?>
+<?php include '_start.php'; ?>
+<?php include '_navigation.php'; ?>
 
-<a href="<?php echo route('admin-add-page'); ?>">Seite hinzufügen</a>
-<ul class="pages">
-<?php foreach($pages as $page) : ?>
-    <li></li>
-<?php endforeach; ?>    
-</ul>
+<div class="container">
+    <a href="<?php echo route('admin-add-page'); ?>">Seite hinzufügen</a>
+    <ul class="pages">
+    <?php foreach($pages as $page) : ?>
+        <li><?php ec($page->name); ?></li>
+    <?php endforeach; ?>
+    </ul>
+</div>
 
-<?php include 'end.php'; ?>
+<?php include '_end.php'; ?>

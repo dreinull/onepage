@@ -12,8 +12,21 @@ class AdminController {
         Backend::make('home', compact('pages'));
     }
 
+    public function options() {
+        Backend::make('options');
+    }
+
+    public function optionsPost() {
+
+    }
+
     public function addPage() {
         Backend::make('add-page');
+    }
+
+    public function addPagePost() {
+        Page::create(Request::only(['name', 'slug']));
+        Page::select()->run();
     }
     
     public function page($id) {
