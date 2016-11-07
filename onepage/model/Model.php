@@ -294,14 +294,12 @@ abstract class Model {
         $requestParts[] = 'VALUES';
         $requestParts[] = '(' . implode(',', $this->values) . ')';
         $this->request = implode(' ', $requestParts) . ';';
-        var_dump($this->request);
     }
 
     /**
      * Runs a created statement
      */
     public function run() {
-        //var_dump($this->request);
         $this->entries = Capsule::select($this->request);
     }
 

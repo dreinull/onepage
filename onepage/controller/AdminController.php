@@ -25,8 +25,8 @@ class AdminController {
     }
 
     public function addPagePost() {
-        Page::create(Request::only(['name', 'slug']));
-        Page::select()->run();
+        Page::create(Request::all());
+        //Page::select()->run();
     }
     
     public function page($id) {

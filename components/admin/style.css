@@ -1,0 +1,30 @@
+/* Color Scheme: https://coolors.co/50514f-b4adea-fdfff7-59ffa0-ffed65 */
+
+.navbar-inverse {
+    background: #50514F;
+}
+
+ul.pages-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.pages-list>li {
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+ul.pages-list>li>a {
+    color: #666;
+    display: block;
+}
+
+ul.pages-list>li>a img {
+    max-width: 32px;
+}
+
+ul.pages-list>li> p {
+    
+}
