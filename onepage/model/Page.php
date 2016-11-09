@@ -10,6 +10,7 @@ class Page extends Model {
 
     public $defaults = [
         'visible' => 0,
+        'default' => 0
     ];
 
 }

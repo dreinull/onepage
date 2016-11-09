@@ -45,7 +45,7 @@ class Installer {
         if(!$this->schema->hasTable('sections')) {
             $this->schema->create('sections', function($table) {
                 $table->increments('id');
-                $table->integer('page_id')->nullable();
+                $table->integer('page_id');
                 $table->boolean('visible');
                 $table->tinyInteger('order')->unsigned();
                 $table->string('template');
@@ -65,6 +65,7 @@ class Installer {
                 $table->integer('parent_id')->nullable();
                 $table->boolean('visible');
                 $table->tinyInteger('order')->unsigned()->nullable();
+                $table->boolean('default');
                 $table->string('name');
                 $table->string('slug');
                 $table->timestamps();
@@ -183,8 +184,15 @@ class Installer {
     }
     
     public function createDefaultContent() {
+        Capsule::table('pages')->insert([
+            'visible' => 1,
+            'default' => 1,
+            'name' => 'Start',
+            'slug' => 'start'
+        ]);
         Capsule::table('sections')->insert([
-            'order' => '1',
+            'page_id' => 1,
+            'order' => 1,
             'visible' => 1,
             'template' => 'example',
             'name' => 'Bereich 1',

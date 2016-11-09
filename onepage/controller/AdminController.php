@@ -30,6 +30,6 @@ class AdminController {
     }
     
     public function page($id) {
-        echo 'editing ' . $id;
+        $page = Page::where('id', $id);
     }
 }

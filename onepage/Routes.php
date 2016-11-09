@@ -34,7 +34,9 @@ class Routes {
         $function = $call[1];
 
         $control = new $controller;
-        $control->$function(isset($id) ? $id : null);
+        //var_dump($parameters);
+        //call_user_func_array([$control, $function], $parameters);
+        $control->$function(isset($parameters['id']) ? $parameters['id'] : null);
 
     }
     
@@ -52,7 +54,7 @@ class Routes {
         $routes->add('admin-add-page-post', new Route('/admin/added-page', ['controller' => 'AdminController@addPagePost']));
         
         
-        $routes->add('admin-page', new Route('/admin/page', ['controller' => 'AdminController@home']));
+        $routes->add('admin-page-home', new Route('/admin/page', ['controller' => 'AdminController@home']));
         $routes->add('admin-page', new Route('/admin/page/{id}', ['controller' => 'AdminController@page']));
         $routes->add('admin-settings', new Route('/admin/settings', ['controller' => 'AdminController@settings']));
 

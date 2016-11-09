@@ -80,7 +80,7 @@ abstract class Model {
         foreach (array_merge($model->defaults, $values) as $column => $value) {
             if(in_array($column, $model->fillable)) {
                 $model->columns[] = $column;
-                $model->values[] = sq($value);
+                $model->values[] = tq($value);
             }
         }
         $model->createInsert();
@@ -104,6 +104,33 @@ abstract class Model {
         $this->run();
         
         return $this->entries;
+    }
+
+    /**
+     * Runs the select statement and gives back the first element
+     * @return array
+     */
+    public function first() {
+        $entries = $this->get();
+        if(count($entries) !== 0) {
+            return $entries[0];
+        }
+        return null;
+    }
+
+    /**
+     * Runs the select statement and gives back the first element
+     * @return array
+     */
+    public function firstOrFail() {
+        $entries = $this->get();
+        //var_dump($entries);
+        if(count($entries) !== 0) {
+            return $entries[0];
+        }
+        header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
+        echo 'Page not found';
+        die();
     }
 
     /**
@@ -153,7 +180,7 @@ abstract class Model {
      * @return $this
      */
     public function where($key, $val) {
-        $this->filters[] = 'WHERE ' . $key . ' = ' . $this->formatValue($val);
+        $this->filters[] = tq($key) . ' = ' . $this->formatValue($val);
         return $this;
     }
 
@@ -164,7 +191,7 @@ abstract class Model {
      * @return $this
      */
     public function whereNot($key, $val) {
-        $this->filters[] = 'WHERE ' . $key . ' <> ' . $this->formatValue($val);
+        $this->filters[] = tq($key) . ' <> ' . $this->formatValue($val);
         return $this;
     }
 
@@ -175,7 +202,7 @@ abstract class Model {
      * @return $this
      */
     public function whereGreaterThan($key, $val) {
-        $this->filters[] = 'WHERE ' . $key . ' > ' . $this->formatValue($val);
+        $this->filters[] = tq($key) . ' > ' . $this->formatValue($val);
         return $this;
     }
 
@@ -186,7 +213,7 @@ abstract class Model {
      * @return $this
      */
     public function whereLessThan($key, $val) {
-        $this->filters[] = 'WHERE ' . $key . ' < ' . $this->formatValue($val);
+        $this->filters[] = tq($key) . ' < ' . $this->formatValue($val);
         return $this;
     }
 
@@ -197,7 +224,7 @@ abstract class Model {
      * @return $this
      */
     public function whereGreaterThanOrEqual($key, $val) {
-        $this->filters[] = 'WHERE ' . $key . ' >= ' . $this->formatValue($val);
+        $this->filters[] = tq($key) . ' >= ' . $this->formatValue($val);
         return $this;
     }
 
@@ -208,7 +235,7 @@ abstract class Model {
      * @return $this
      */
     public function whereLessThanOrEqual($key, $val) {
-        $this->filters[] = 'WHERE ' . $key . ' <= ' . $this->formatValue($val);
+        $this->filters[] = tq($key) . ' <= ' . $this->formatValue($val);
         return $this;
     }
 
@@ -220,7 +247,7 @@ abstract class Model {
      * @return $this
      */
     public function whereBetween($key, $min, $max) {
-        $this->filters[] = 'WHERE ' . $key . ' BETWEEN ' . $this->formatValue($min) . ' AND ' . $this->formatValue($max);
+        $this->filters[] = tq($key) . ' BETWEEN ' . $this->formatValue($min) . ' AND ' . $this->formatValue($max);
         return $this;
     }
 
@@ -231,7 +258,7 @@ abstract class Model {
      * @return $this
      */
     public function whereLike($key, $val) {
-        $this->filters[] = 'WHERE ' . $key . ' LIKE ' . $this->formatValue($val);
+        $this->filters[] = tq($key) . ' LIKE ' . $this->formatValue($val);
         return $this;
     }
 
@@ -242,7 +269,7 @@ abstract class Model {
      * @return $this
      */
     public function whereIn($key, $values) {
-        $this->filters[] = 'WHERE ' . $key . ' IN (' . implode(array_map([$this, 'formatValue'], $values)) . ')';
+        $this->filters[] = tq($key) . ' IN (' . implode(array_map([$this, 'formatValue'], $values)) . ')';
         return $this;
     }
 
@@ -275,8 +302,9 @@ abstract class Model {
         foreach ($this->joins as $join) {
             $requestParts[] = $join;
         }
-        foreach ($this->filters as $filter) {
-            $requestParts[] = $filter;
+        if(count($this->filters)) {
+            $requestParts[] = 'WHERE';
+            $requestParts[] = implode(' AND ', $this->filters);
         }
         foreach ($this->orders as $order) {
             $requestParts[] = $order;
