@@ -50,8 +50,6 @@ class Installer {
                 $table->tinyInteger('order')->unsigned();
                 $table->string('template');
                 $table->string('name');
-                $table->string('head')->nullable();
-                $table->text('body')->nullable();
                 $table->timestamps();
             });
             echo 'Section-Tabelle erstellt.';

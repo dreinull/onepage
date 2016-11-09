@@ -19,6 +19,7 @@ class Start {
             'defineConstants',
             'connectToDatabase',
             'checkForInstall',
+            'loadSections',
         ];
         // Fires all of the functions and stops if FALSE is returned
         foreach ($steps as $step) {
@@ -37,6 +38,7 @@ class Start {
         define('config_path', createPath(root_path, 'config'));
         define('database_path', createPath(root_path, 'onepage', 'database'));
         define('template_path', createPath(root_path, 'template'));
+        define('section_path', createPath(template_path, 'sections'));
         define('database_file', database_path . DIRECTORY_SEPARATOR . 'database.sqlite');
         define('install_file', config_path . DIRECTORY_SEPARATOR . '.install');
         define('reset_file', config_path . DIRECTORY_SEPARATOR . '.reset');
@@ -63,6 +65,10 @@ class Start {
             return false;
             
         }
+    }
+
+    public function loadSections() {
+
     }
 
 }

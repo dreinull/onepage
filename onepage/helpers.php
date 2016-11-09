@@ -50,6 +50,7 @@ function getHomeUrl() {
 
 function route($name, $params = []) {
     $route = \Onepage\Config::routes($name);
+
     foreach($params as $key => $value) {
         $route = str_replace('{'.$key.'}', $value, $route);
     }

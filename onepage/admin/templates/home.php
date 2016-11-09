@@ -5,7 +5,7 @@
     <a href="<?php echo route('admin-add-page'); ?>">Seite hinzufügen</a>
     <ul class="pages-list">
     <?php foreach($pages as $page) : ?>
-        <li><a href="#">
+        <li><a href="<?php echo route('admin-page', ['id' => $page->id]); ?>">
             <img src="<?php component('admin', 'icons', 'page.png'); ?>" alt="Seite">
             <p><?php ec($page->name); ?></p>
         </a></li>

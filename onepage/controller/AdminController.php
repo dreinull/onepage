@@ -3,6 +3,7 @@
 namespace Onepage\Controller;
 
 use Onepage\Model\Page;
+use Onepage\Model\Section;
 use Onepage\View\Backend;
 use Onepage\Request;
 
@@ -30,6 +31,9 @@ class AdminController {
     }
     
     public function page($id) {
-        $page = Page::where('id', $id);
+        $page = Page::findOrFail($id);
+        $sections = Section::select()->where('page_id', $page->id)->get();
+        Backend::make('page', compact('page', 'sections'));
+
     }
 }

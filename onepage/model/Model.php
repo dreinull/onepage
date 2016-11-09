@@ -88,6 +88,24 @@ abstract class Model {
     }
 
     /**
+     * Returns the first line by the column ID
+     * @param $id
+     * @return object
+     */
+    public static function find($id) {
+        return static::select()->where('id', $id)->first();
+    }
+
+    /**
+     * Returns the first line by the column ID or fails
+     * @param $id
+     * @return object
+     */
+    public static function findOrFail($id) {
+        return static::select()->where('id', $id)->firstOrFail();
+    }
+
+    /**
      * Makes and runs an update statement
      * @param array $values
      */
@@ -280,6 +298,7 @@ abstract class Model {
      */
     public function orderBy($value, $order = 'ASC') {
         $this->orders[] = 'ORDER BY ' . tq($value) . ' ' . $order;
+        return $this;
     }
 
     /**

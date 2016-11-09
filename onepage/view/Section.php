@@ -13,7 +13,7 @@ class Section extends View {
 
     public function __construct($name) {
 
-        $this->templatesPath = template_path;
+        $this->templatesPath = section_path;
         $this->templateName = $name;
         $this->fileName = 'template.php';
         $this->createPath();

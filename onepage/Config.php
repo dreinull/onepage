@@ -8,6 +8,7 @@ class Config {
     private $app;
     private $database;
     private $routes;
+    private $sections;
 
     public function __construct() {
         $this->app = include(config_path . DIRECTORY_SEPARATOR .  'app.php');
