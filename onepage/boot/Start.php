@@ -6,9 +6,8 @@
  * Time: 14:05
  */
 
-namespace Onepage;
+namespace Onepage\Boot;
 
-use Onepage\Help;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Start {
@@ -30,25 +29,25 @@ class Start {
     }
     
     public function loadHelpers() {
-        include __DIR__ . DIRECTORY_SEPARATOR . 'helpers.php';
+        include __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'helpers.php';
     }
 
     public function defineConstants() {
-        define('root_path', createPath(__DIR__, '..'));
+        define('root_path', createPath(__DIR__, '..', '..'));
+        define('onepage_path', createPath(root_path, 'onepage'));
         define('config_path', createPath(root_path, 'config'));
-        define('database_path', createPath(root_path, 'onepage', 'database'));
+        define('database_path', createPath(onepage_path, 'database'));
         define('template_path', createPath(root_path, 'template'));
         define('section_path', createPath(template_path, 'sections'));
-        define('database_file', database_path . DIRECTORY_SEPARATOR . 'database.sqlite');
-        define('install_file', config_path . DIRECTORY_SEPARATOR . '.install');
-        define('reset_file', config_path . DIRECTORY_SEPARATOR . '.reset');
-        define('admin_template_path', createPath(root_path, 'onepage', 'admin', 'templates'));
+        define('database_file', createPath(database_path, 'database.sqlite'));
+        define('install_file', createPath(config_path, '.install'));
+        define('admin_template_path', createPath(template_path, 'admin'));
         define('home_url', str_replace('index.php', '', $_SERVER['PHP_SELF']));
         return true;
     }
 
     public function connectToDatabase() {
-        $settings = Help::getConfig('database');
+        $settings = getConfig('database');
         
         $capsule = new Capsule;
         $capsule->addConnection($settings);

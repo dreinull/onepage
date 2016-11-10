@@ -14,12 +14,6 @@ abstract class View {
 
     public $path;
 
-    public function __construct($name) {
-
-        var_dump($this->templateName);
-
-    }
-
     public static function make($name, $data = []) {
 
         $view = new static($name);

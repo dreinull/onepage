@@ -1,6 +1,6 @@
 <?php
 
-namespace Onepage;
+namespace Onepage\Boot;
 
 class Config {
     private static $instance = null;

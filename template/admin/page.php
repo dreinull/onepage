@@ -3,7 +3,12 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3" id="section-editing">
+                
+                <button id="" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
+                <button id="" class="btn btn-danger  btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+                <button id="fullscreen-editing" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-fullscreen"></span></button>
+                <h3><?php ec($page->name) ?></h3>
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     <?php foreach($sections as $section) : ?>
                         <div class="panel panel-default">
@@ -16,8 +21,7 @@
                             </div>
                             <div id="collapse<?php ec($section->id); ?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
-                                    <?php ec($section->template); ?>
-                                    editing shit
+                                    <?php \Onepage\View\SectionEdit::make($section->template, $section->content); ?>
                                 </div>
                             </div>
                         </div>

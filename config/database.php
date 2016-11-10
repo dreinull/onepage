@@ -8,7 +8,7 @@
  
 return [
     'driver' => 'sqlite',
-    'database' => \Onepage\Help::createPath(database_path, 'database.sqlite'),
+    'database' => createPath(database_path, 'database.sqlite'),
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',

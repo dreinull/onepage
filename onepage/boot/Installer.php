@@ -1,6 +1,6 @@
 <?php
 
-namespace Onepage;
+namespace Onepage\Boot;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 

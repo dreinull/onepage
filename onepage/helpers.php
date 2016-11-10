@@ -1,22 +1,12 @@
 <?php
 
-function theTitle() {
-    echo Onepage\Config::app('name');
-}
-
-function theDescription() {
-    echo Onepage\Config::app('description');
-}
-
-function show($section, $field) {
-    if($field == 'head') {
-        echo $section->head;
-    } elseif($field == 'body') {
-        echo $section->body;
-    } elseif(isset($section->content->$field)) {
-        echo $section->content->$field->value;
+function getConfig($name) {
+        $file = createPath(config_path, $name . '.php');
+        if(file_exists($file)) {
+            return include($file);
+        }
+        return false;
     }
-}
 
 function createPath() {
     return realpath(implode(DIRECTORY_SEPARATOR, func_get_args()));
@@ -49,7 +39,7 @@ function getHomeUrl() {
 
 
 function route($name, $params = []) {
-    $route = \Onepage\Config::routes($name);
+    $route = \Onepage\Boot\Config::routes($name);
 
     foreach($params as $key => $value) {
         $route = str_replace('{'.$key.'}', $value, $route);

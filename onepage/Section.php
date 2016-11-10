@@ -13,10 +13,23 @@ class Section {
 
     public $loaded = false;
 
+    public $path;
+
+    public $html;
+
+    public $css;
+
+    public $specialCss;
+
+    public $conf;
+
     public function __construct($name) {
         $this->path = createPath(section_path, $name);
-        if($this->path == false) {
+        
+        if($this->path == true) {
             
+
+            $this->loaded = true;
         }
     }
 

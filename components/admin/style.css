@@ -10,21 +10,21 @@ ul.pages-list {
     padding: 0;
 }
 
-ul.pages-list>li {
+ul.pages-list > li {
     display: block;
     text-align: center;
     margin-bottom: 15px;
 }
 
-ul.pages-list>li>a {
+ul.pages-list > li > a {
     color: #666;
     display: block;
 }
 
-ul.pages-list>li>a img {
+ul.pages-list > li > a img {
     max-width: 32px;
 }
 
-ul.pages-list>li> p {
-    
+#section-editing > #fullscreen-editing {
+    float: right;
 }

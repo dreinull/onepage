@@ -10,7 +10,7 @@ require_once __DIR__ . '/vendor' . '/autoload.php';
 /*
  * Load important stuff and connect to database
  */
-$boot = new \Onepage\Start();
+$boot = new \Onepage\Boot\Start();
 $boot->getThisPartyStarted();
 
-new Onepage\Routes();
+new Onepage\Boot\Routes();
