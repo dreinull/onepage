@@ -9,22 +9,17 @@
                 <button id="" class="btn btn-danger  btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
                 <button id="fullscreen-editing" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-fullscreen"></span></button>
                 <h3><?php ec($page->name) ?></h3>
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="section-list">
                     <?php foreach($sections as $section) : ?>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab">
-                                <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php ec($section->id); ?>" aria-expanded="true" aria-controls="collapseOne">
-                                        <?php ec($section->name); ?>
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapse<?php ec($section->id); ?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    <?php \Onepage\View\SectionEdit::make($section->template, $section->content); ?>
-                                </div>
+                        <div class="item">
+                            <a class="section-head" role="button" data-toggle="collapse" href="#section<?php ec($section->id); ?>" aria-expanded="false" aria-controls="section<?php ec($section->id); ?>">
+                                <span class="glyphicon glyphicon-align-justify"></span> <?php ec($section->name); ?>
+                            </a>
+                            <div class="collapse section-body" id="section<?php ec($section->id); ?>">
+                                <?php \Onepage\View\SectionEdit::make($section->template, $section->content); ?>
                             </div>
                         </div>
+                        
                     <?php endforeach; ?>
                 </div>
             </div>

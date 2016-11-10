@@ -28,3 +28,30 @@ ul.pages-list > li > a img {
 #section-editing > #fullscreen-editing {
     float: right;
 }
+
+.section-list > .item {
+    border: 1px solid #ddd;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.section-list .section-head {
+    display: block;
+    padding: 3px;
+    background-color: #eee;
+    color: #333;
+}
+
+.section-list .section-head:hover {
+    text-decoration: none;
+    background: #e5e5e5;
+}
+
+.section-list .section-head:active, .section-list .section-head:focus {
+    text-decoration: none;
+}
+
+.section-list .section-body {
+    padding: 3px;
+    background: #fafafa;
+}
