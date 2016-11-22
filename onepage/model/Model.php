@@ -82,7 +82,6 @@ abstract class Model {
      * @param array $values
      */
     public static function create($values = []) {
-        print_r($values);
         $model = new static();
         foreach (array_merge($model->defaults, $values) as $column => $value) {
             if(in_array($column, $model->fillable)) {
@@ -397,7 +396,6 @@ abstract class Model {
      * Runs a created statement
      */
     public function run() {
-        echo $this->request;
         return $this->entries = Capsule::select($this->request);
     }
 
