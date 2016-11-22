@@ -20,10 +20,10 @@
                 'rows' => 8
             ]);;
             break; // the rules!
-        case 'timestamp':
-            $value = array_key_exists($field->name, $data) ? date("Y-m-d H:i:s", $data[$field->name]) : '';
-            echo Form::date($field->name, $field->placeholder, $value, [
-                'class' => 'form-control input-sm field-input',
+        case 'date':
+            $value = array_key_exists($field->name, $data) ? date("d.m.Y", $data[$field->name]) : '';
+            echo Form::text($field->name, $field->placeholder, $value, [
+                'class' => 'form-control input-sm field-input date-input',
                 'data-type' => $field->type,
                 'data-field' => $field->name,
                 'data-changed' => 'false',

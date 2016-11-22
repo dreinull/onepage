@@ -31,6 +31,12 @@ abstract class Model {
     private $filters = [];
 
     /**
+     * Original where Statements
+     * @var array
+     */
+    private $whereArray = [];
+
+    /**
      * Orderby-Statements
      * @var array
      */
@@ -76,11 +82,12 @@ abstract class Model {
      * @param array $values
      */
     public static function create($values = []) {
+        print_r($values);
         $model = new static();
         foreach (array_merge($model->defaults, $values) as $column => $value) {
             if(in_array($column, $model->fillable)) {
                 $model->columns[] = $column;
-                $model->values[] = tq($value);
+                $model->values[] = $model->formatValue($value);
             }
         }
         $model->createInsert();
@@ -190,6 +197,7 @@ abstract class Model {
      * @return $this
      */
     public function where($key, $val) {
+        $this->whereArray[$key] = $val;
         $this->filters[] = tq($key) . ' = ' . $this->formatValue($val);
         return $this;
     }
@@ -336,6 +344,21 @@ abstract class Model {
     }
 
     /**
+     * Checks if Filters match a record and update or else create it.
+     * @param array $values
+     */
+    public function updateOrCreate($values = []) {
+        $this->createSelect();
+        $this->run();
+        
+        if(count($this->entries) == 0) {
+            return self::create($this->whereArray + $values);
+        } else {
+            return $this->update($values);
+        }
+    }
+
+    /**
      * Makes and runs an update statement
      * @param array $values with column => value
      * @param bool $withoutWhere
@@ -374,6 +397,7 @@ abstract class Model {
      * Runs a created statement
      */
     public function run() {
+        echo $this->request;
         return $this->entries = Capsule::select($this->request);
     }
 

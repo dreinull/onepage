@@ -60,7 +60,7 @@ class Start {
     public function checkForInstall() {
         if(file_exists(install_file)) {
             echo 'Installation';
-            \Onepage\Installer::start();
+            Installer::start();
             return false;
             
         }

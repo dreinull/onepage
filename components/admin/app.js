@@ -8,6 +8,11 @@ $( document ).ready(function() {
         $(this).data('changed', 'true');
     });
 
+    
+    $('.date-input').datepicker({
+        dateFormat: "dd.mm.yy"
+    });
+
     $('#save-sections').click(function(e) {
         e.preventDefault();
         $('.section-list').find('.field-input').each(function() {

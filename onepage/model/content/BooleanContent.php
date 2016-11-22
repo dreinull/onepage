@@ -12,5 +12,7 @@ namespace Onepage\Model\Content;
 use Onepage\Model\Content;
 
 class BooleanContent extends Content {
+    public $defaults = [];
+
     public $table = 'contents_boolean';
 }

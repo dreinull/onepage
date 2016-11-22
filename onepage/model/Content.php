@@ -17,6 +17,8 @@ use Onepage\Model\Content\TextContent;
 use Onepage\Model\Content\TimestampContent;
 
 class Content extends Model {
+    public $fillable = ['section_id', 'key', 'value'];
+
     public function get() {
         $entries = parent::get();
         $values = [];

@@ -14,7 +14,7 @@
         },
         {
             "name": "date",
-            "type": "timestamp",
+            "type": "date",
             "placeholder": "Ein Datum"
         }
     ]

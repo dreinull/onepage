@@ -99,6 +99,19 @@ class Installer {
             echo 'Content-Tabelle für Texte bereits vorhanden';
         }
 
+        if(!$this->schema->hasTable('contents_date')) {
+            $this->schema->create('contents_date', function($table) {
+                $table->increments('id');
+                $table->integer('section_id')->unsigned();
+                $table->string('key');
+                $table->date('value');
+                $table->timestamps();
+            });
+            echo 'Content-Tabelle für Dates erstellt.';
+        } else {
+            echo 'Content-Tabelle für Dates bereits vorhanden';
+        }
+        
         if(!$this->schema->hasTable('contents_timestamp')) {
             $this->schema->create('contents_timestamp', function($table) {
                 $table->increments('id');

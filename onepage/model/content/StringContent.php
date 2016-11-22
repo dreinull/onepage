@@ -12,5 +12,7 @@ namespace Onepage\Model\Content;
 use Onepage\Model\Content;
 
 class StringContent extends Content {
+    public $defaults = [];
+
     public $table = 'contents_string';
 }
