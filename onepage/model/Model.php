@@ -106,14 +106,6 @@ abstract class Model {
     }
 
     /**
-     * Makes and runs an update statement
-     * @param array $values
-     */
-    public static function update($values = []) {
-
-    }
-
-    /**
      * Runs the select statement
      * @return array
      */
@@ -344,10 +336,45 @@ abstract class Model {
     }
 
     /**
+     * Makes and runs an update statement
+     * @param array $values with column => value
+     * @param bool $withoutWhere
+     */
+    public function update($values = [], $withoutWhere = false) {
+        
+        /* Mass update (without using a where statement) is only able if $withoutWhere is true.
+         * Just for not accidently update everything. */
+        if(count($this->filters) > 0 && $withoutWhere = false) {
+            return false;
+        }
+        /* Only makes sense with at least one column to update */
+        if(count($values) === 0) {
+            return false;
+        }
+        $requestParts[] = 'UPDATE';
+        $requestParts[] = $this->table;
+        $requestParts[] = 'SET';
+        $updates = [];
+        foreach($values as $column => $value) {
+            $updates[] = tq($column) . '=' . $this->formatValue($value); 
+        }
+        $requestParts[] = implode(',', $updates);
+        if(count($this->filters)) {
+            $requestParts[] = 'WHERE';
+            $requestParts[] = implode(' AND ', $this->filters);
+        }
+        foreach ($this->orders as $order) {
+            $requestParts[] = $order;
+        }
+        $this->request = implode(' ', $requestParts) . ';';
+        return $this->run();
+    }
+
+    /**
      * Runs a created statement
      */
     public function run() {
-        $this->entries = Capsule::select($this->request);
+        return $this->entries = Capsule::select($this->request);
     }
 
 }

@@ -5,30 +5,42 @@
     switch($field->type) {
         case 'string':
             echo Form::text($field->name, $field->placeholder, $data[$field->name], [
-                'class' => 'form-control input-sm'
+                'class' => 'form-control input-sm field-input',
+                'data-type' => $field->type,
+                'data-field' => $field->name,
+                'data-changed' => 'false',
             ]);
             break;
         case 'text':
             echo Form::textarea($field->name, $field->placeholder, $data[$field->name], [
-                'class' => 'form-control input-sm',
+                'class' => 'form-control input-sm field-input',
+                'data-type' => $field->type,
+                'data-field' => $field->name,
+                'data-changed' => 'false',
                 'rows' => 8
             ]);;
             break; // the rules!
         case 'timestamp':
             $value = array_key_exists($field->name, $data) ? date("Y-m-d H:i:s", $data[$field->name]) : '';
             echo Form::date($field->name, $field->placeholder, $value, [
-                'class' => 'form-control input-sm'
+                'class' => 'form-control input-sm field-input',
+                'data-type' => $field->type,
+                'data-field' => $field->name,
+                'data-changed' => 'false',
             ]);
             break;
         case 'integer':
         case 'float':
             echo Form::text($field->name, $field->placeholder, $data[$field->name], [
-                'class' => 'form-control input-sm'
+                'class' => 'form-control input-sm field-input',
+                'data-type' => $field->type,
+                'data-field' => $field->name,
+                'data-changed' => 'false',
             ]);
             break;
         case 'boolean':
             $value = array_key_exists($field->name, $data) ? $data[$field->name] : 0;
-            echo '<label><input type="checkbox" name="' . $field->name . '">' . $field->placeholder . ' value="' . $data[$field->name] . '"></label>';
+            echo Form::checkbox($field->name, $field->placeholder, 1, $value);
             break;
     }
     echo '</div>';

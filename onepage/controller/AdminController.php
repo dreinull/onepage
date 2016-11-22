@@ -27,7 +27,6 @@ class AdminController {
 
     public function addPagePost() {
         Page::create(Request::all());
-        //Page::select()->run();
     }
     
     public function page($id) {
@@ -35,5 +34,16 @@ class AdminController {
         $sections = Section::select()->where('page_id', $page->id)->get();
         Backend::make('page', compact('page', 'sections'));
 
+    }
+
+    public function apiFieldUpdate($id) {
+        $field = Request::all();
+        $model = '\Onepage\Model\Content\\' . ucfirst($field['type']) . 'Content';
+        //file_put_contents(__DIR__ . '/filename.txt', print_r($model , true));
+        if(!class_exists($model)) {return false;}
+        $t  = $model::select()
+            ->where('section_id', $field['section'])
+            ->where('key', $field['field'])
+            ->update(['value' => $field['value']]);
     }
 }
