@@ -23,10 +23,24 @@ $( document ).ready(function() {
                     section: field.closest('.section-body').data('id'),
                     field: field.data('field'),
                     value: field.val()
-                }
+                };
                 $.post(adminUrl + '/api/field/update', changes)
                     .done(function(data) {
                         field.data('changed', 'false').removeClass('changed');
+                    });
+            }
+        });
+        $('.section-name input').each(function(){
+            if($(this).data('changed') == 'true') {
+                var field = $(this);
+                var changes = {
+                    section: field.data('section'),
+                    value: field.val()
+                };
+                $.post(adminUrl + '/api/section/rename', changes)
+                    .done(function(data) {
+                        field.data('changed', 'false').removeClass('changed').prop({'disabled': true});
+                        $( '#page-preview' ).attr( 'src', function ( i, val ) { return val; });
                     });
             }
         });
@@ -40,6 +54,14 @@ $( document ).ready(function() {
         }
         $( '#page-preview' ).attr( 'src', function ( i, val ) { return val; });
             
+    });
+
+    $('.section-name.clickable').click(function() {
+        $(this).removeClass('clickable');
+        $(this).find('input').removeAttr('disabled');
+    });
+    $('.section-name input').change(function() {
+        $(this).data('changed', 'true').data('changed', 'true').addClass('changed');
     });
 
     $('.add-this-section').click(function(e) {

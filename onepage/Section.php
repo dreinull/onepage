@@ -8,6 +8,7 @@ class Section {
 
     public $loaded = false;
 
+    /* These vars include the file content or false if there is no file*/
     public $path;
 
     public $html;

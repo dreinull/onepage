@@ -21,6 +21,14 @@ abstract class View {
         $view->display();
     }
 
+    public static function getContent($name, $data = []) {
+        $view =  new static($name);
+        $view->data = $data;
+        ob_start();
+        $view->display();
+        return ob_get_clean();
+    }
+
     public function setFile($file) {
         $this->file = $file;
     }

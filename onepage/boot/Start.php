@@ -42,6 +42,8 @@ class Start {
         define('database_file', createPath(database_path, 'database.sqlite'));
         define('install_file', createPath(config_path, '.install'));
         define('admin_template_path', createPath(template_path, 'admin'));
+        define('component_path', createPath(root_path, 'components'));
+        define('app_style', createPath(component_path, 'css', 'main.css'));
         define('home_url', str_replace('index.php', '', $_SERVER['PHP_SELF']));
         return true;
     }
