@@ -52,6 +52,33 @@ ul.pages-list > li > a img {
     text-decoration: none;
 }
 
+.section-list .section-name {
+    display: inline;
+}
+
+.section-list .section-name.changed {
+    background-color: #FFED65;
+}
+
+.section-list .section-name {
+    display: inline;
+}
+
+.section-list .section-name input {
+    border: none;
+    outline: 1px solid #777;
+    background-color: #dfdfee;
+}
+
+.section-list .section-name input[disabled] {
+    outline: none;
+    background-color: transparent;
+}
+
+.section-list .section-name input.changed {
+    background-color: #FFED65;
+}
+
 .section-list .section-body {
     padding: 3px;
     background: #fafafa;

@@ -62,6 +62,7 @@ class Routes {
         $routes->add('admin-api-field-update', new Route('/admin/api/field/update', ['controller' => 'AdminController@apiFieldUpdate']));
         $routes->add('admin-api-add-section', new Route('/admin/api/section/post', ['controller' => 'AdminController@apiAddSectionToPage']));
         $routes->add('admin-api-section-order', new Route('/admin/api/section/order', ['controller' => 'AdminController@apiSectionOrder']));
+        $routes->add('admin-api-section-rename', new Route('/admin/api/section/rename', ['controller' => 'AdminController@apiSectionRename']));
 
         $routes->add('home', new Route('/', ['controller' => 'PageController@home']));
         $routes->add('page', new Route('/{slug}', ['controller' => 'PageController@page']));

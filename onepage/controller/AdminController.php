@@ -62,4 +62,11 @@ class AdminController {
             $i++;
         } 
     }
+
+    public function apiSectionRename() {
+        $request = Request::only(['section', 'value']);
+        Section::select()
+            ->where('id', $request['section'])
+            ->update(['name' => $request['value']]);
+    }
 }

@@ -12,8 +12,13 @@
                     <?php foreach($sections as $section) : ?>
                         <div class="item" id="s<?php ec($section->id); ?>">
                             <div class="section-head" >
-                                <span class="glyphicon glyphicon-align-justify"></span> <?php ec($section->name); ?>
-                                <a role="button" data-toggle="collapse" href="#section<?php ec($section->id); ?>" aria-expanded="false" aria-controls="section<?php ec($section->id); ?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <span class="glyphicon glyphicon-align-justify"></span>
+                                <div class="section-name clickable">
+                                    <?php echo \Markup\Form::textInput('sectionname', $section->name, ['disabled', 'data-changed' => 'false', 'data-section' => ecGet($section->id)]) ?>
+                                </div>
+                                <a role="button" data-toggle="collapse" href="#section<?php ec($section->id); ?>" aria-expanded="false" aria-controls="section<?php ec($section->id); ?>">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
                             </div>
                             <div class="collapse section-body" id="section<?php ec($section->id); ?>" data-id="<?php ec($section->id); ?>">
                                 <?php \Onepage\View\SectionEdit::make($section->template, $section->content); ?>
@@ -40,7 +45,7 @@
             </div>
             <div class="col-sm-9">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe id="page-preview" src="<?php ec(route('home')); ?>"></iframe>
+                    <iframe id="page-preview" src="<?php ecRoute('home'); ?>"></iframe>
                 </div>
             </div>
         </div>
