@@ -1,1 +1,1 @@
-\Onepage\Model\Content\DateContent
+\Onepage\Model\Content\StringContent

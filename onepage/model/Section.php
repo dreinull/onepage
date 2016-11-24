@@ -4,6 +4,11 @@ namespace Onepage\Model;
 
 class Section extends Model {
     public $table = 'sections';
+    public $defaults = [
+        'visible' => 1,
+        'order' => 0,
+    ];
+    public $fillable = ['page_id', 'template', 'name', 'order', 'visible'];
 
     private $withInvisible = false;
 
@@ -16,7 +21,7 @@ class Section extends Model {
 
         $entries = parent::get();
         foreach ($entries as $section) {
-            $section->content = Content::select()->getAll();
+            $section->content = Content::getAll($section->id);
         }
         return $entries;
     }

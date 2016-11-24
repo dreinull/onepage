@@ -5,7 +5,7 @@ $( document ).ready(function() {
     });
 
     $('.field-input').change(function() {
-        $(this).data('changed', 'true');
+        $(this).data('changed', 'true').addClass('changed');
     });
 
     
@@ -17,20 +17,48 @@ $( document ).ready(function() {
         e.preventDefault();
         $('.section-list').find('.field-input').each(function() {
             if($(this).data('changed') == 'true') {
+                var field = $(this);
                 var changes = {
-                    type: $(this).data('type'),
-                    section: $(this).closest('.section-body').data('id'),
-                    field: $(this).data('field'),
-                    value: $(this).val()
+                    type: field.data('type'),
+                    section: field.closest('.section-body').data('id'),
+                    field: field.data('field'),
+                    value: field.val()
                 }
-                //alert(adminUrl + '/post');
                 $.post(adminUrl + '/api/field/update', changes)
                     .done(function(data) {
-                        console.log(data);
+                        field.data('changed', 'false').removeClass('changed');
+                        $( '#page-preview' ).attr( 'src', function ( i, val ) { return val; });
                     });
-                $(this).data('changed', 'false');
             }
         });
+        if(sectionOrdered == true) {
+            data = $(".section-list").sortable("toArray");
+            //console.log()
+            $.post(adminUrl + '/api/section/order', {data:data})
+                .done(function(data) {
+                    console.log(data);
+                });
+        }
             
     });
+
+    $('.add-this-section').click(function(e) {
+        e.preventDefault;
+        $('#add-section-template').val($(this).data('template'));
+        $('#add-section-page').val($(this).data('page'));
+
+        $('#add-section-list').hide();      
+        $('#add-section-form').show();      
+
+    });
+
+    $( ".section-list" ).sortable({
+        create: function() {
+            sectionOrdered = false;
+        },
+        change: function() {
+            sectionOrdered = true;
+        }
+    });
+
 });

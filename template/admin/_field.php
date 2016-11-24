@@ -4,7 +4,7 @@
     echo '<div class="form-group">';
     switch($field->type) {
         case 'string':
-            echo Form::text($field->name, $field->placeholder, $data[$field->name], [
+            echo Form::text($field->name, $field->placeholder, getFromArray($data, $field->name), [
                 'class' => 'form-control input-sm field-input',
                 'data-type' => $field->type,
                 'data-field' => $field->name,
@@ -12,7 +12,7 @@
             ]);
             break;
         case 'text':
-            echo Form::textarea($field->name, $field->placeholder, $data[$field->name], [
+            echo Form::textarea($field->name, $field->placeholder, getFromArray($data, $field->name), [
                 'class' => 'form-control input-sm field-input',
                 'data-type' => $field->type,
                 'data-field' => $field->name,
@@ -21,8 +21,7 @@
             ]);;
             break; // the rules!
         case 'date':
-            $value = array_key_exists($field->name, $data) ? date("d.m.Y", $data[$field->name]) : '';
-            echo Form::text($field->name, $field->placeholder, $value, [
+                echo Form::text($field->name, $field->placeholder, getFromArray($data, $field->name), [
                 'class' => 'form-control input-sm field-input date-input',
                 'data-type' => $field->type,
                 'data-field' => $field->name,
@@ -31,7 +30,7 @@
             break;
         case 'integer':
         case 'float':
-            echo Form::text($field->name, $field->placeholder, $data[$field->name], [
+            echo Form::text($field->name, $field->placeholder, getFromArray($data, $field->name), [
                 'class' => 'form-control input-sm field-input',
                 'data-type' => $field->type,
                 'data-field' => $field->name,

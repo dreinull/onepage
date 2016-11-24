@@ -1,12 +1,12 @@
 <?php
 
 function getConfig($name) {
-        $file = createPath(config_path, $name . '.php');
-        if(file_exists($file)) {
-            return include($file);
-        }
-        return false;
+    $file = createPath(config_path, $name . '.php');
+    if(file_exists($file)) {
+        return include($file);
     }
+    return false;
+}
 
 function createPath() {
     return realpath(implode(DIRECTORY_SEPARATOR, func_get_args()));
@@ -25,7 +25,6 @@ function component() {
 }
 
 function self() {
-    //echo ;
     echo getSelf();
 }
 
@@ -55,6 +54,32 @@ function sq($name) {
     return "'" . $name . "'";
 }
 
-function ec($value) {
-    echo htmlspecialchars($value);
+function ecGet(&$value) {
+    return isset($value) ? htmlspecialchars($value) : '';
+}
+
+function ec(&$value) {
+    echo ecGet($value);
+}
+
+function getFromArray($array, $key) {
+    if(array_key_exists($key, $array)) {
+        return ecGet($array[$key]);
+    }
+    return null;
+}
+
+function getAllSections() {
+    $sections = [];
+    foreach(scandir(section_path) as $folder) {
+        // We only need the directorys
+        if($folder == '.' OR $folder == '..' OR !is_dir(createPath(section_path, $folder))) { continue; }
+        $sections[] = new \Onepage\Section($folder);
+    }
+    return $sections;
+}
+
+function redirect($url, $permanent = false) {
+    header('Location: ' . $url, true, $permanent ? 301 : 302);
+    exit();
 }

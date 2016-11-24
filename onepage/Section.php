@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jasch
- * Date: 09.11.2016
- * Time: 22:32
- */
 
 namespace Onepage;
 
 
 class Section {
+    public $name;
 
     public $loaded = false;
 
@@ -24,11 +19,21 @@ class Section {
     public $conf;
 
     public function __construct($name) {
+        $this->name = $name;
         $this->path = createPath(section_path, $name);
-        
-        if($this->path == true) {
-            
-
+        $paths = [
+            'html' => createPath($this->path, 'template.php'),
+            'css' => createPath($this->path, 'style.css'),
+            'specialCss' => createPath($this->path, 'style.php'),
+            'conf' => createPath($this->path, 'conf.json'),
+        ];
+        foreach($paths as $key => $path) {
+            if($path !== false) {
+                $this->$key = file_get_contents($path);
+            }
+        }
+        $this->conf = json_decode($this->conf);
+        if($this->html !== false && $this->conf !== null) {
             $this->loaded = true;
         }
     }

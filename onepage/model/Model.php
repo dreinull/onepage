@@ -90,7 +90,7 @@ abstract class Model {
             }
         }
         $model->createInsert();
-        $model->run();
+        return $model->run();
     }
 
     /**
@@ -336,7 +336,7 @@ abstract class Model {
     public function createInsert() {
         $requestParts[] = 'INSERT INTO';
         $requestParts[] = $this->table;
-        $requestParts[] = '(' . implode(', ', $this->columns) . ')';
+        $requestParts[] = '(' . implode(', ', array_map([$this, 'formatValue'],$this->columns)) . ')';
         $requestParts[] = 'VALUES';
         $requestParts[] = '(' . implode(',', $this->values) . ')';
         $this->request = implode(' ', $requestParts) . ';';
@@ -396,6 +396,7 @@ abstract class Model {
      * Runs a created statement
      */
     public function run() {
+        //var_dump($this->request);
         return $this->entries = Capsule::select($this->request);
     }
 

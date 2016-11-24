@@ -14,6 +14,7 @@ use Onepage\Model\Content\FloatContent;
 use Onepage\Model\Content\IntegerContent;
 use Onepage\Model\Content\StringContent;
 use Onepage\Model\Content\TextContent;
+use Onepage\Model\Content\DateContent;
 use Onepage\Model\Content\TimestampContent;
 
 class Content extends Model {
@@ -32,14 +33,15 @@ class Content extends Model {
      * Gets all types content
      * @return array
      */
-    public function getAll() {
+    public static function getAll($section) {
         return array_merge(
-            BooleanContent::select()->get(),
-            FloatContent::select()->get(),
-            IntegerContent::select()->get(),
-            StringContent::select()->get(),
-            TextContent::select()->get(),
-            TimestampContent::select()->get()
+            BooleanContent::select()->where('section_id', $section)->get(),
+            FloatContent::select()->where('section_id', $section)->get(),
+            IntegerContent::select()->where('section_id', $section)->get(),
+            StringContent::select()->where('section_id', $section)->get(),
+            TextContent::select()->where('section_id', $section)->get(),
+            DateContent::select()->where('section_id', $section)->get(),
+            TimestampContent::select()->where('section_id', $section)->get()
         );
     }
 }

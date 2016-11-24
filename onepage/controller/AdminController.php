@@ -32,7 +32,8 @@ class AdminController {
     public function page($id) {
         $page = Page::findOrFail($id);
         $sections = Section::select()->where('page_id', $page->id)->get();
-        Backend::make('page', compact('page', 'sections'));
+        $allSections = Section::select()->get();
+        Backend::make('page', compact('page', 'sections', 'allSections'));
 
     }
 
@@ -45,5 +46,20 @@ class AdminController {
             ->where('section_id', $field['section'])
             ->where('key', $field['field'])
             ->updateOrCreate(['value' => $field['value']]);
+    }
+
+    public function sectionPost() {
+        $request = Request::all();
+        Section::create($request);
+        redirect(route(admin-page, $request['page']));
+    }
+
+    public function apiSectionOrder() {
+        $order = Request::input('data');
+        $i = 1;
+        foreach($order as $sectionId) {
+            Section::select()->where('id', ltrim($sectionId, 's'))->update(['order' => $i]);
+            $i++;
+        } 
     }
 }
