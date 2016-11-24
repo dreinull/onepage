@@ -31,16 +31,6 @@ class Installer {
     }
     
     public function installTables() {
-        if(!$this->schema->hasTable('users')) {
-            $this->schema->create('users', function($table) {
-                $table->increments('id');
-                $table->string('email')->unique();
-                $table->timestamps();
-            });
-            echo 'Benutzer-Tabelle erstellt.';
-        } else {
-            echo 'Benutzer-Tabelle bereits vorhanden';
-        }
         
         if(!$this->schema->hasTable('sections')) {
             $this->schema->create('sections', function($table) {
@@ -176,6 +166,24 @@ class Installer {
             echo 'Options-Tabelle für Boolean bereits vorhanden';
         }
 
+        if(!$this->schema->hasTable('Users')) {
+            $this->schema->create('Users', function($table) {
+                $table->increments('ID');
+                $table->string('Username');
+                $table->string('Password');
+                $table->string('Email');
+                $table->boolean('Activated')->default(0);
+                $table->string('Confirmation')->default('');
+                $table->integer('RegDate');
+                $table->integer('LastLogin')->default(0);
+                $table->integer('GroupID')->default(1);
+                
+            });
+            echo 'Benutzer-Tabelle erstellt';
+        } else {
+            echo 'Benutzer-Tabelle wurde bereits erstellt.';
+        }
+
         return $this;
     }
 
@@ -188,9 +196,7 @@ class Installer {
     }
     
     public function createUser() {
-        Capsule::table('users')->insert([
-            'email' => 'jascha.gerles@gmail.com'
-        ]);
+
         return $this;
     }
     

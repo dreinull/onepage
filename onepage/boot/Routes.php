@@ -64,6 +64,10 @@ class Routes {
         $routes->add('admin-api-section-order', new Route('/admin/api/section/order', ['controller' => 'AdminController@apiSectionOrder']));
         $routes->add('admin-api-section-rename', new Route('/admin/api/section/rename', ['controller' => 'AdminController@apiSectionRename']));
 
+        $routes->add('login', new Route('/admin/login', ['controller' => 'UserController@getLogin']));
+        $routes->add('login-post', new Route('/admin/login/post', ['controller' => 'UserController@postLogin']));
+        $routes->add('logout', new Route('/admin/logout', ['controller' => 'UserController@getLogout']));
+
         $routes->add('home', new Route('/', ['controller' => 'PageController@home']));
         $routes->add('page', new Route('/{slug}', ['controller' => 'PageController@page']));
 

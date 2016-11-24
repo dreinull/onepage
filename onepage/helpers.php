@@ -162,6 +162,10 @@ function redirect($url, $permanent = false) {
     exit();
 }
 
+function redirectRoute($name, $values = []) {
+    redirect(route($name, $values));
+}
+
 function sectionContent($section) {
     return array_merge($section->content, ['id' => $section->id]);
 }

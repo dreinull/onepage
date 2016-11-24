@@ -6,8 +6,13 @@ use Onepage\Model\Page;
 use Onepage\Model\Section;
 use Onepage\View\Backend;
 use Onepage\Request;
+use Onepage\User;
 
 class AdminController {
+    public function __construct() {
+        User::access();
+    }
+
     public function index() {
         $pages = Page::select()->get();
         Backend::make('home', compact('pages'));

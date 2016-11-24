@@ -18,7 +18,6 @@ class Start {
             'defineConstants',
             'connectToDatabase',
             'checkForInstall',
-            'loadSections',
         ];
         // Fires all of the functions and stops if FALSE is returned
         foreach ($steps as $step) {
@@ -55,7 +54,22 @@ class Start {
         $capsule->addConnection($settings);
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
+        //var_dump($capsule::getPdo());
         //$results = Capsule::select('select * from users where id = ?', array(1));
+        /*$user = new \ptejada\uFlex\User();
+        $user->config = getConfig('user');
+        $user->config->database->pdo = Capsule::connection()->getPdo();
+        $user->start();
+        $user->register([
+                'Username' => 'jascha',
+                'Password' => 'test',
+                'Email' => 'jascha.gerles@gmail.com'
+            ]);
+            echo json_encode(
+            array(
+                'error'   => $user->log->getErrors(),
+            )
+        );*/   
         return true;
     }
     
@@ -63,13 +77,9 @@ class Start {
         if(file_exists(install_file)) {
             echo 'Installation';
             Installer::start();
-            return false;
-            
+            return false;            
         }
-    }
-
-    public function loadSections() {
-
+        return true;
     }
 
 }
