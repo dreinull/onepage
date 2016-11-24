@@ -161,3 +161,7 @@ function redirect($url, $permanent = false) {
     header('Location: ' . $url, true, $permanent ? 301 : 302);
     exit();
 }
+
+function sectionContent($section) {
+    return array_merge($section->content, ['id' => $section->id]);
+}
