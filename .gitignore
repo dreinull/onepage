@@ -1,3 +1,4 @@
 /vendor
-/.idea
 composer.lock
+/onepage/database/database.sqlite
+/.idea

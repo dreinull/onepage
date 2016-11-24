@@ -1,1 +1,1 @@
-\Onepage\Model\Content\StringContent
+\Onepage\Model\Content\TextContent

@@ -27,7 +27,6 @@ $( document ).ready(function() {
                 $.post(adminUrl + '/api/field/update', changes)
                     .done(function(data) {
                         field.data('changed', 'false').removeClass('changed');
-                        $( '#page-preview' ).attr( 'src', function ( i, val ) { return val; });
                     });
             }
         });
@@ -39,6 +38,7 @@ $( document ).ready(function() {
                     console.log(data);
                 });
         }
+        $( '#page-preview' ).attr( 'src', function ( i, val ) { return val; });
             
     });
 
