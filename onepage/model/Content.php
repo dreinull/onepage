@@ -6,9 +6,11 @@ namespace Onepage\Model;
 use Onepage\Model\Content\BooleanContent;
 use Onepage\Model\Content\FloatContent;
 use Onepage\Model\Content\IntegerContent;
+use Onepage\Model\Content\ImageContent;
 use Onepage\Model\Content\StringContent;
 use Onepage\Model\Content\TextContent;
 use Onepage\Model\Content\DateContent;
+use Onepage\Model\Content\DownloadContent;
 use Onepage\Model\Content\TimestampContent;
 
 class Content extends Model {

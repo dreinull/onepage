@@ -228,7 +228,7 @@ class Installer {
             'email' => 'jascha.gerles@gmail.com',
             'activated' => 1,
             'GroupID' => 1,
-            'RegDaten' => '1480011917',
+            'RegDate' => '1480011917',
         ]);
         return $this;
     }
