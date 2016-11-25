@@ -83,14 +83,15 @@ abstract class Model {
      */
     public static function create($values = []) {
         $model = new static();
-        foreach (array_merge($model->defaults, $values) as $column => $value) {
+        /*foreach (array_merge($model->defaults, $values) as $column => $value) {
             if(in_array($column, $model->fillable)) {
                 $model->columns[] = $column;
                 $model->values[] = $model->formatValue($value);
             }
         }
         $model->createInsert();
-        return $model->run();
+        return $model->run();*/
+        return Capsule::table($model->table)->insertGetId(array_merge($model->defaults, $values));
     }
 
     /**

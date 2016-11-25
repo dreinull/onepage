@@ -159,7 +159,7 @@ class Installer {
                 $table->increments('id');
                 $table->integer('section_id')->unsigned();
                 $table->string('key');
-                $table->string('value');
+                $table->string('image_id');
                 $table->timestamps();
             });
             echo 'Content-Tabelle für Bilder erstellt.';
@@ -167,8 +167,8 @@ class Installer {
             echo 'Content-Tabelle für Bilder bereits vorhanden';
         }
 
-        if(!$this->schema->hasTable('contents_download')) {
-            $this->schema->create('contents_download', function($table) {
+        if(!$this->schema->hasTable('contents_file')) {
+            $this->schema->create('contents_file', function($table) {
                 $table->increments('id');
                 $table->integer('section_id')->unsigned();
                 $table->string('key');
@@ -178,6 +178,19 @@ class Installer {
             echo 'Content-Tabelle für Downloads erstellt.';
         } else {
             echo 'Content-Tabelle für Downloads bereits vorhanden';
+        }
+
+        if(!$this->schema->hasTable('images')) {
+            $this->schema->create('images', function($table) {
+                $table->increments('id');
+                $table->string('filename');
+                $table->string('title')->nullable();
+                $table->string('alt')->nullable();
+                $table->timestamps();
+            });
+            echo 'Bilder-Tabelle erstellt.';
+        } else {
+            echo 'Bilder-Tabelle bereits vorhanden';
         }
 
         if(!$this->schema->hasTable('options')) {

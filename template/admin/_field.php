@@ -41,6 +41,9 @@
             $value = array_key_exists($field->name, $data) ? $data[$field->name] : 0;
             echo Form::checkbox($field->name, $field->placeholder, 1, $value);
             break;
+        case 'image':
+            echo Form::textInput($field->name, $data[$field->name]['url']);
+            break;
     }
     echo '</div>';
 }

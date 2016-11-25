@@ -2,17 +2,6 @@
 
 namespace Onepage\Model;
 
-
-use Onepage\Model\Content\BooleanContent;
-use Onepage\Model\Content\FloatContent;
-use Onepage\Model\Content\IntegerContent;
-use Onepage\Model\Content\ImageContent;
-use Onepage\Model\Content\StringContent;
-use Onepage\Model\Content\TextContent;
-use Onepage\Model\Content\DateContent;
-use Onepage\Model\Content\DownloadContent;
-use Onepage\Model\Content\TimestampContent;
-
 class Content extends Model {
     public $fillable = ['section_id', 'key', 'value'];
 
@@ -33,7 +22,7 @@ class Content extends Model {
         return array_merge(
             BooleanContent::select()->where('section_id', $section)->get(),
             DateContent::select()->where('section_id', $section)->get(),
-            DownloadContent::select()->where('section_id', $section)->get(),
+            FileContent::select()->where('section_id', $section)->get(),
             FloatContent::select()->where('section_id', $section)->get(),
             ImageContent::select()->where('section_id', $section)->get(),
             IntegerContent::select()->where('section_id', $section)->get(),

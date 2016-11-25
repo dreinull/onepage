@@ -1,9 +1,6 @@
 <?php
 
-namespace Onepage\Model\Content;
-
-
-use Onepage\Model\Content;
+namespace Onepage\Model;
 
 class DateContent extends Content {
     public $defaults = [];

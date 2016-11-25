@@ -131,9 +131,13 @@ function ec(&$value) {
  * @param $key
  * @return null|string
  */
-function getFromArray($array, $key) {
-    if(array_key_exists($key, $array)) {
-        return ecGet($array[$key]);
+function getFromArray($array, $keys) {
+    if(is_array($keys)) {
+        
+    } else {
+        if(array_key_exists($keys, $array)) {
+            return ecGet($array[$keys]);
+        }
     }
     return null;
 }
@@ -168,4 +172,8 @@ function redirectRoute($name, $values = []) {
 
 function sectionContent($section) {
     return array_merge($section->content, ['id' => $section->id]);
+}
+
+function getImageUrl($filename = NULL) {
+    return getComponent('img', $filename);
 }

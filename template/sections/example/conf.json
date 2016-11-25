@@ -13,9 +13,9 @@
             "placeholder": "Fließtext"
         },
         {
-            "name": "date",
-            "type": "date",
-            "placeholder": "Ein Datum"
+            "name": "jascha",
+            "type": "image",
+            "placeholder": "Datei"
         }
     ]
 }

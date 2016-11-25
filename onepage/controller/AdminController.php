@@ -44,8 +44,8 @@ class AdminController {
 
     public function apiFieldUpdate($id) {
         $field = Request::all();
-        $model = '\Onepage\Model\Content\\' . ucfirst($field['type']) . 'Content';
-        file_put_contents(__DIR__ . '/filename.txt', print_r($model , true));
+        $model = '\Onepage\Model\\' . ucfirst($field['type']) . 'Content';
+        //file_put_contents(__DIR__ . '/filename.txt', print_r($model , true));
         if(!class_exists($model)) {echo 'return false'; return false;}
         $t = $model::select()
             ->where('section_id', $field['section'])
