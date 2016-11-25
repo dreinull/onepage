@@ -51,5 +51,4 @@
         </div>
 
     </div>
-<?php include '_modal.php'; ?>
 <?php include '_end.php'; ?>

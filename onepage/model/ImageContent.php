@@ -13,6 +13,7 @@ class ImageContent extends Model {
         $values = [];
         foreach ($entries as $entry) {
             $values[$entry->key] = [
+                'id' => $entry->id,
                 'url' => getImageUrl($entry->filename),
                 'title' => $entry->title,
                 'alt' => $entry->alt

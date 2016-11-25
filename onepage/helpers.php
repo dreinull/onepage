@@ -131,13 +131,15 @@ function ec(&$value) {
  * @param $key
  * @return null|string
  */
-function getFromArray($array, $keys) {
-    if(is_array($keys)) {
-        
-    } else {
-        if(array_key_exists($keys, $array)) {
-            return ecGet($array[$keys]);
+function getFromArray($key, $array) {
+    if(is_array($key)) {
+        if(count($key) == 1) {
+            return getFromArray($key[0], $array);
+        } elseif(array_key_exists($level = array_shift($key), $array)) {
+            return getFromArray($key, $array[$level]);
         }
+    } elseif(array_key_exists($key, $array)) {
+        return ecGet($array[$key]);
     }
     return null;
 }
