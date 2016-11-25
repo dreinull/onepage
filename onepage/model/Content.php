@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jasch
- * Date: 31.10.2016
- * Time: 10:14
- */
 
 namespace Onepage\Model;
 
@@ -36,12 +30,15 @@ class Content extends Model {
     public static function getAll($section) {
         return array_merge(
             BooleanContent::select()->where('section_id', $section)->get(),
+            DateContent::select()->where('section_id', $section)->get(),
+            DownloadContent::select()->where('section_id', $section)->get(),
             FloatContent::select()->where('section_id', $section)->get(),
+            ImageContent::select()->where('section_id', $section)->get(),
             IntegerContent::select()->where('section_id', $section)->get(),
             StringContent::select()->where('section_id', $section)->get(),
             TextContent::select()->where('section_id', $section)->get(),
-            DateContent::select()->where('section_id', $section)->get(),
             TimestampContent::select()->where('section_id', $section)->get()
+
         );
     }
 }

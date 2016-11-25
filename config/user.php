@@ -5,7 +5,7 @@ return new ptejada\uFlex\Collection([
     'cookieName'      => 'auto',
     'cookiePath'      => '/',
     'cookieHost'      => false,
-    'userTableName'   => 'Users',
+    'userTableName'   => 'users',
     'userSession'     => 'userData',
     'userDefaultData' => [
         'Username' => 'Guess',

@@ -154,6 +154,32 @@ class Installer {
             echo 'Content-Tabelle für Boolean bereits vorhanden';
         }
 
+        if(!$this->schema->hasTable('contents_image')) {
+            $this->schema->create('contents_image', function($table) {
+                $table->increments('id');
+                $table->integer('section_id')->unsigned();
+                $table->string('key');
+                $table->string('value');
+                $table->timestamps();
+            });
+            echo 'Content-Tabelle für Bilder erstellt.';
+        } else {
+            echo 'Content-Tabelle für Bilder bereits vorhanden';
+        }
+
+        if(!$this->schema->hasTable('contents_download')) {
+            $this->schema->create('contents_download', function($table) {
+                $table->increments('id');
+                $table->integer('section_id')->unsigned();
+                $table->string('key');
+                $table->string('value');
+                $table->timestamps();
+            });
+            echo 'Content-Tabelle für Downloads erstellt.';
+        } else {
+            echo 'Content-Tabelle für Downloads bereits vorhanden';
+        }
+
         if(!$this->schema->hasTable('options')) {
             $this->schema->create('options', function($table) {
                 $table->increments('id');
@@ -166,8 +192,8 @@ class Installer {
             echo 'Options-Tabelle für Boolean bereits vorhanden';
         }
 
-        if(!$this->schema->hasTable('Users')) {
-            $this->schema->create('Users', function($table) {
+        if(!$this->schema->hasTable('users')) {
+            $this->schema->create('users', function($table) {
                 $table->increments('ID');
                 $table->string('Username');
                 $table->string('Password');
@@ -196,7 +222,14 @@ class Installer {
     }
     
     public function createUser() {
-
+        Capsule::table('users')->insert([
+            'Username' => 'jascha',
+            'Password' => 'ca87eecfadce09b01a716ff621d11b1655eeac60',
+            'email' => 'jascha.gerles@gmail.com',
+            'activated' => 1,
+            'GroupID' => 1,
+            'RegDaten' => '1480011917',
+        ]);
         return $this;
     }
     
