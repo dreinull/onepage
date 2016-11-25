@@ -43,6 +43,7 @@
             break;
         case 'image':
             echo Form::textInput($field->name, $data[$field->name]['url']);
+            echo '<button class="btn-default btn-small">Auswählen</button>';
             break;
     }
     echo '</div>';
