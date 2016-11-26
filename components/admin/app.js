@@ -64,8 +64,22 @@ $( document ).ready(function() {
         $(this).data('changed', 'true').data('changed', 'true').addClass('changed');
     });
 
+    $('.select-image').click(function (e) {
+        e.preventDefault();
+    });
+    $('#file-select').on('show.bs.modal', function(e) {
+        $(this).load(adminUrl + '/api/image/select', function() {
+            $(this).find('.modal-body').selectable({
+                filter: 'img',
+                stop: function(e, ui) {
+                    $(e.target).children('.ui-selected').not(':first').removeClass('ui-selected');
+                }
+            });
+        });
+    })
+
     $('.add-this-section').click(function(e) {
-        e.preventDefault;
+        e.preventDefault();
         $('#add-section-template').val($(this).data('template'));
         $('#add-section-page').val($(this).data('page'));
 

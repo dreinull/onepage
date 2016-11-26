@@ -43,8 +43,14 @@
             break;
         case 'image':
             echo '<img src="' . getFromArray([$field->name, 'url'], $data) . '" width="30">';
-            echo Form::textInput($field->name, getFromArray([$field->name, 'id'], $data), ['hidden']);
-            echo '<button class="btn-default btn-small">Auswählen</button>';
+            echo Form::textInput($field->name, getFromArray([$field->name, 'id'], $data), [
+                'hidden',
+                'data-type' => $field->type,
+                'data-field' => $field->name,
+                'data-changed' => 'false',
+                'class' => 'image-input'
+            ]);
+            echo '<button class="btn-default btn-small select-image" data-target="#file-select" data-remote="false" data-toggle="modal" data-field="<?php ec($field->name): ?>">Auswählen</button>';
             break;
     }
     echo '</div>';

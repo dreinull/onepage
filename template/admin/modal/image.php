@@ -1,4 +1,6 @@
-<?php // Images have the attribues: id, url, title, alt ?>
+<?php // Images have the attribues: id, url, title, alt
+include '_start.php';
+?>
 
 <div class="container-fluid">
 
@@ -8,7 +10,7 @@
                 <div class="row">
                     <?php foreach($row as $image) : ?>
                         <div class="col-xs-3">
-                            <img src="<?php ec($image->url); ?>" alt="<?php ec($image->alt); ?>" data-id="<?php ec($image->id); ?>">
+                            <img src="<?php echo getImageUrl($image->filename); ?>" alt="<?php ec($image->alt); ?>" data-id="<?php ec($image->id); ?>" class="img-responsive">
                             <p><?php ec($image->title); ?>
                         </div>
                     <?php endforeach; ?>
@@ -17,3 +19,5 @@
         </div>
     </div>
 </div>
+
+<?php include '_end.php';

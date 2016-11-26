@@ -2,11 +2,13 @@
 
 namespace Onepage\Controller;
 
+use Onepage\Model\Image;
 use Onepage\Model\Page;
 use Onepage\Model\Section;
 use Onepage\View\Backend;
 use Onepage\Request;
 use Onepage\User;
+use Onepage\View\ImageSelect;
 
 class AdminController {
     public function __construct() {
@@ -73,5 +75,10 @@ class AdminController {
         Section::select()
             ->where('id', $request['section'])
             ->update(['name' => $request['value']]);
+    }
+
+    public function apiImageSelect() {
+        $images = Image::select()->get();
+        ImageSelect::make(null, compact('images'));
     }
 }

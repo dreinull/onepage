@@ -7,11 +7,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?php ec(route('admin')); ?>">Onepage Admin</a>
+        <a class="navbar-brand" href="<?php ecRoute('admin'); ?>">Onepage Admin</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="<?php ec(route('admin-options')); ?>">Optionen</a></li>
+            <li><a href="<?php ecRoute('admin-options'); ?>">Optionen</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div><!--/.nav-collapse -->

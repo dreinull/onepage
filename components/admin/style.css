@@ -99,3 +99,11 @@ ul.pages-list > li > a img {
 .add-section #add-section-form {
     display: none;
 }
+
+.modal-dialog {
+    width: 90vw;
+}
+
+#file-select .ui-selected {
+    outline: 2px solid red;
+}

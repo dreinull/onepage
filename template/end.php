@@ -1,3 +1,4 @@
+
         <script>window.jQuery || document.write('<script src="components/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
         <script src="components/js/vendor/bootstrap.min.js"></script>

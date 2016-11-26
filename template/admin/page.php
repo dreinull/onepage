@@ -1,6 +1,6 @@
 <?php include '_start.php'; ?>
 <?php include '_navigation.php'; ?>
-
+<div id="app">
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3" id="section-editing">
@@ -51,4 +51,5 @@
         </div>
 
     </div>
+</div>
 <?php include '_end.php'; ?>

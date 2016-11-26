@@ -1,4 +1,4 @@
-<div class="modal fade" id="file-select" tabindex="-1" role="dialog" aria-labelledby="fileSelect">
+
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
