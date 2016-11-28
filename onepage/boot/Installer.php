@@ -159,7 +159,7 @@ class Installer {
                 $table->increments('id');
                 $table->integer('section_id')->unsigned();
                 $table->string('key');
-                $table->string('image_id');
+                $table->string('value');
                 $table->timestamps();
             });
             echo 'Content-Tabelle für Bilder erstellt.';

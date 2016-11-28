@@ -26,6 +26,7 @@ $( document ).ready(function() {
                 };
                 $.post(adminUrl + '/api/field/update', changes)
                     .done(function(data) {
+                        console.log(data);
                         field.data('changed', 'false').removeClass('changed');
                     });
             }
@@ -50,9 +51,9 @@ $( document ).ready(function() {
             $.post(adminUrl + '/api/section/order', {data:data})
                 .done(function(data) {
                     console.log(data);
+                    $( '#page-preview' ).attr( 'src', function ( i, val ) { return val; });
                 });
         }
-        $( '#page-preview' ).attr( 'src', function ( i, val ) { return val; });
             
     });
 
@@ -61,22 +62,33 @@ $( document ).ready(function() {
         $(this).find('input').removeAttr('disabled');
     });
     $('.section-name input').change(function() {
-        $(this).data('changed', 'true').data('changed', 'true').addClass('changed');
+        $(this).data('changed', 'true').addClass('changed');
     });
 
     $('.select-image').click(function (e) {
         e.preventDefault();
+        imageTarget = $(this).data('for');
+        imagePreview = $(this).data('preview');
+
     });
     $('#file-select').on('show.bs.modal', function(e) {
         $(this).load(adminUrl + '/api/image/select', function() {
-            $(this).find('.modal-body').selectable({
-                filter: 'img',
-                stop: function(e, ui) {
-                    $(e.target).children('.ui-selected').not(':first').removeClass('ui-selected');
+            imageSelected = null;
+            $(this).find('.image-selectable').bind('click', function() {
+                if(imageSelected !== null) {
+                    imageSelected.removeClass('image-selected');
                 }
+                $(this).addClass('image-selected');
+                imageSelected = $(this);
+            });
+            $(this).find('.modal-confirm').bind('click', function() {
+                $('#file-select').modal('hide');
+                $(imageTarget).val(imageSelected.data('id'));
+                $(imageTarget).data('changed', 'true').addClass('changed');
+                $(imagePreview).attr('src', imageSelected.attr('src'));
             });
         });
-    })
+    });
 
     $('.add-this-section').click(function(e) {
         e.preventDefault();

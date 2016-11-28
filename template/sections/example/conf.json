@@ -13,7 +13,7 @@
             "placeholder": "Fließtext"
         },
         {
-            "name": "jascha",
+            "name": "hintergrund",
             "type": "image",
             "placeholder": "Datei"
         }

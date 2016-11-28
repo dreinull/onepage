@@ -1,4 +1,6 @@
-<?php // Images have the attribues: id, url, title, alt
+<?php
+// Content of modal to choose image.
+// Images have the attribues: id, url, title, alt
 include '_start.php';
 ?>
 
@@ -10,7 +12,7 @@ include '_start.php';
                 <div class="row">
                     <?php foreach($row as $image) : ?>
                         <div class="col-xs-3">
-                            <img src="<?php echo getImageUrl($image->filename); ?>" alt="<?php ec($image->alt); ?>" data-id="<?php ec($image->id); ?>" class="img-responsive">
+                            <img src="<?php echo getImageUrl($image->filename); ?>" alt="<?php ec($image->alt); ?>" data-id="<?php ec($image->id); ?>" data-url="<?php ec($image->url); ?>" class="img-responsive image-selectable">
                             <p><?php ec($image->title); ?>
                         </div>
                     <?php endforeach; ?>

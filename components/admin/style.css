@@ -104,6 +104,6 @@ ul.pages-list > li > a img {
     width: 90vw;
 }
 
-#file-select .ui-selected {
+#file-select .image-selected {
     outline: 2px solid red;
 }

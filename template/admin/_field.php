@@ -42,15 +42,16 @@
             echo Form::checkbox($field->name, $field->placeholder, 1, $value);
             break;
         case 'image':
-            echo '<img src="' . getFromArray([$field->name, 'url'], $data) . '" width="30">';
+            echo '<img src="' . getFromArray([$field->name, 'url'], $data) . '" width="30" id="image-preview-' . ecGet($field->name) . '">';
             echo Form::textInput($field->name, getFromArray([$field->name, 'id'], $data), [
                 'hidden',
                 'data-type' => $field->type,
                 'data-field' => $field->name,
                 'data-changed' => 'false',
-                'class' => 'image-input'
+                'class' => 'field-input image-input',
+                'id' => 'image-' . $field->name,
             ]);
-            echo '<button class="btn-default btn-small select-image" data-target="#file-select" data-remote="false" data-toggle="modal" data-field="<?php ec($field->name): ?>">Auswählen</button>';
+            echo '<button class="btn-default btn-small select-image" data-target="#file-select" data-remote="false" data-toggle="modal" data-for="#image-' . ecGet($field->name) . '" data-preview="#image-preview-' . ecGet($field->name) . '">Auswählen</button>';
             break;
     }
     echo '</div>';
