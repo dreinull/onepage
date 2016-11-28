@@ -27,7 +27,9 @@ class PageController {
         }
         $glue = "\r\n";
 
-        file_put_contents(app_style, implode($glue, $css) . $glue . implode($glue, $specialCss));
+        minifyCss(array_merge($css, $specialCss), app_style);
+
+        //file_put_contents(app_style, implode($glue, $css) . $glue . implode($glue, $specialCss));
 
         $view = Template::make('page', compact('sections'));
 

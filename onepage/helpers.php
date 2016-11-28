@@ -179,3 +179,11 @@ function sectionContent($section) {
 function getImageUrl($filename = NULL) {
     return getComponent('img', $filename);
 }
+
+function minifyCss($array, $path) {
+    $minify = new MatthiasMullie\Minify\Css;
+    foreach($array as $value) {
+        $minify->add($value);
+    }
+    return $minify->minify($path);
+}
