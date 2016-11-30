@@ -113,16 +113,17 @@ function sq($name) {
  * @param $value
  * @return string
  */
-function ecGet(&$value) {
+function f(&$value) {
     return isset($value) ? htmlspecialchars($value) : '';
 }
+
 
 /**
  * Echoes filtered string if exist
  * @param $value
  */
 function ec(&$value) {
-    echo ecGet($value);
+    echo f($value);
 }
 
 /**
@@ -139,7 +140,7 @@ function getFromArray($key, $array) {
             return getFromArray($key, $array[$level]);
         }
     } elseif(array_key_exists($key, $array)) {
-        return ecGet($array[$key]);
+        return $array[$key];
     }
     return null;
 }
@@ -186,4 +187,13 @@ function minifyCss($array, $path) {
         $minify->add($value);
     }
     return $minify->minify($path);
+}
+
+function makeContent($content) {
+    if($content === null) {
+        $content = new stdClass();
+        $content->id = null;
+        $content->value = null;
+    }
+    return $content;
 }

@@ -12,13 +12,15 @@ class ImageContent extends Model {
         $entries = parent::get();
         $values = [];
         foreach ($entries as $entry) {
-            $values[$entry->key] = [
+            /*$values[$entry->key] = [
                 'id' => $entry->id,
                 'filename' => $entry->filename,
                 'url' => getImageUrl($entry->filename),
                 'title' => $entry->title,
                 'alt' => $entry->alt
-            ];
+            ];*/
+            $values[$entry->key] = $entry;
+            $values[$entry->key]->url = getImageUrl($entry->filename);
         }
         return $values;
     }

@@ -1,3 +1,3 @@
-#header-<?php ec($background['id']) ?> {
-    background-image: url("<?php ec($background['url']) ?>");
+#header-<?php ec($background->id) ?> {
+    background-image: url("<?php ec($background->url) ?>");
 }

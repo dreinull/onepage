@@ -9,7 +9,7 @@ class Content extends Model {
         $entries = parent::get();
         $values = [];
         foreach ($entries as $entry) {
-            $values[$entry->key] = $entry->value;
+            $values[$entry->key] = $entry;
         }
         return $values;
     }

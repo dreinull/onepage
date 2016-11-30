@@ -14,7 +14,7 @@
                             <div class="section-head" >
                                 <span class="glyphicon glyphicon-align-justify"></span>
                                 <div class="section-name clickable">
-                                    <?php echo \Markup\Form::textInput('sectionname', $section->name, ['disabled', 'data-changed' => 'false', 'data-section' => ecGet($section->id)]) ?>
+                                    <?php echo \Markup\Form::textInput('sectionname', $section->name, ['disabled', 'data-changed' => 'false', 'data-section' => $section->id]) ?>
                                 </div>
                                 <a role="button" data-toggle="collapse" href="#section<?php ec($section->id); ?>" aria-expanded="false" aria-controls="section<?php ec($section->id); ?>">
                                     <span class="glyphicon glyphicon-pencil"></span>
