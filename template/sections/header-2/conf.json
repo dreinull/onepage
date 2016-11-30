@@ -1,0 +1,21 @@
+{
+  "title": "Header 2",
+  "description": "Logo, Text und Hintergrund als Header",
+  "fields": [
+    {
+      "name": "background",
+      "type": "image",
+      "placeholder": "Hintergrund"
+    },
+    {
+      "name": "Logo",
+      "type": "image",
+      "placeholder": "Überschrift"
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "placeholder": "Description"
+    }
+  ]
+}

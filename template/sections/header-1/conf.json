@@ -1,0 +1,20 @@
+{
+  "title": "Header 1",
+  "description": "Überschrift und Subline als Header",
+  "fields": [
+    {
+      "name": "background",
+      "type": "image"
+    },
+    {
+      "name": "headline",
+      "type": "string",
+      "placeholder": "Überschrift"
+    },
+    {
+      "name": "subline",
+      "type": "text",
+      "placeholder": "Subline"
+    }
+  ]
+}
