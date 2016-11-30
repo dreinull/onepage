@@ -87,6 +87,7 @@ $( document ).ready(function() {
                 $(imageTarget).data('changed', 'true').addClass('changed');
                 $(imagePreview).attr('src', imageSelected.attr('src'));
             });
+            $(this).find('.modal-body').dropzone({url: 'test/test'});
         });
     });
 
