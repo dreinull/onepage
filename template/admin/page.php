@@ -11,7 +11,7 @@
                 <div class="section-list">
                     <?php foreach($sections as $section) : ?>
                         <div class="item" id="s<?php ec($section->id); ?>">
-                            <div class="section-head" >
+                            <div class="section-head">
                                 <span class="glyphicon glyphicon-align-justify"></span>
                                 <div class="section-name clickable">
                                     <?php echo \Markup\Form::textInput('sectionname', $section->name, ['disabled', 'data-changed' => 'false', 'data-section' => $section->id]) ?>
@@ -21,7 +21,7 @@
                                 </a>
                             </div>
                             <div class="collapse section-body" id="section<?php ec($section->id); ?>" data-id="<?php ec($section->id); ?>">
-                                <?php \Onepage\View\SectionEdit::make($section->template, $section->content); ?>
+                                <?php \Onepage\View\SectionEdit::make($section->title, ['fields' => $section->fields]); ?>
                             </div>
                         </div>
                         
@@ -32,8 +32,8 @@
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                     <div id="add-section-list" class="collapse">
-                        <?php foreach(getAllSections() as $section) : ?>
-                            <a href="#" class="add-this-section" data-template="<?php ec($section->name); ?>" data-page="<?php ec($page->id); ?>"><?php ec($section->conf->title); ?></a>
+                        <?php foreach($availableSections as $section) : ?>
+                            <a href="#" class="add-this-section" data-template="<?php ec($section->template); ?>" data-page="<?php ec($page->id); ?>"><?php ec($section->title); ?></a>
                         <?php endforeach; ?>
                     </div>
                     <?php echo \Markup\Form::open(route('admin-section-post'), ['id' => 'add-section-form']); ?>

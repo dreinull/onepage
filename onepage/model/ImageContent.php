@@ -21,6 +21,7 @@ class ImageContent extends Model {
             ];*/
             $values[$entry->key] = $entry;
             $values[$entry->key]->url = getImageUrl($entry->filename);
+            $values[$entry->key]->value = $values[$entry->key]->url;
         }
         return $values;
     }

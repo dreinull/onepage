@@ -154,9 +154,18 @@ function getAllSections() {
     foreach(scandir(section_path) as $folder) {
         // We only need the directorys
         if($folder == '.' OR $folder == '..' OR !is_dir(createPath(section_path, $folder))) { continue; }
-        $sections[] = new \Onepage\Section($folder);
+        $conf = readSectionConf($folder);
+        $conf->template = $folder;
+        $sections[] = $conf;
     }
     return $sections;
+}
+
+function readSectionConf($folder) {
+    $content = file_get_contents(createPath(section_path, $folder, 'conf.json'));
+    if($content !== false) {
+        return json_decode($content);
+    }
 }
 
 /**

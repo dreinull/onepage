@@ -16,13 +16,10 @@ class Section extends Model {
         if($this->withInvisible === false) {
             $this->where('visible', 1);
         }
-
         $this->orderBy('order');
 
         $entries = parent::get();
-        foreach ($entries as $section) {
-            $section->content = Content::getAll($section->id);
-        }
+
         return $entries;
     }
 

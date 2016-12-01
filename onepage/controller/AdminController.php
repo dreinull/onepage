@@ -38,9 +38,9 @@ class AdminController {
     
     public function page($id) {
         $page = Page::findOrFail($id);
-        $sections = Section::select()->where('page_id', $page->id)->get();
-        $allSections = Section::select()->get();
-        Backend::make('page', compact('page', 'sections', 'allSections'));
+        $sections = \Onepage\Section::getAllForPage($page->id);
+        $availableSections = getAllSections();
+        Backend::make('page', compact('page', 'sections', 'availableSections'));
 
     }
 
