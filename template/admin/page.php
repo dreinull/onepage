@@ -29,7 +29,7 @@
                 </div>
                 <div class="add-section">
                     <button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#add-section-list" aria-expanded="false" aria-controls="add-section-list">
-                        <span class="glyphicon glyphicon-plus"></span>
+                        <span class="glyphicon glyphicon-plus"></span> Bereich hinzufügen
                     </button>
                     <div id="add-section-list" class="collapse">
                         <?php foreach($availableSections as $section) : ?>

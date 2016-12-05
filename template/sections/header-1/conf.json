@@ -4,7 +4,8 @@
   "fields": [
     {
       "name": "background",
-      "type": "image"
+      "type": "image",
+      "placeholder": "Hintergrund"
     },
     {
       "name": "headline",

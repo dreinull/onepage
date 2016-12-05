@@ -1,15 +1,15 @@
 <?php use Markup\Form; ?>
-
 <?php foreach($fields as $field) {
+    
     echo '<div class="form-group">';
-
     switch($field->type) {
         case 'string':
             echo Form::text($field->name, $field->placeholder, f($field->value), [
                 'class' => 'form-control input-sm field-input',
                 'data-type' => $field->type,
-                'data-field' => $field->name,
+                'data-name' => $field->name,
                 'data-id' => $field->id,
+                'data-section' => $field->section,
                 'data-changed' => 'false',
             ]);
             break;
@@ -17,8 +17,9 @@
             echo Form::textarea($field->name, $field->placeholder, f($field->value), [
                 'class' => 'form-control input-sm field-input',
                 'data-type' => $field->type,
-                'data-field' => $field->name,
+                'data-name' => $field->name,
                 'data-id' => $field->id,
+                'data-section' => $field->section,
                 'data-changed' => 'false',
                 'rows' => 8
             ]);;
@@ -29,6 +30,7 @@
                 'data-type' => $field->type,
                 'data-field' => $field->name,
                 'data-id' => $field->id,
+                'data-section' => $field->section,
                 'data-changed' => 'false',
             ]);
             break;
@@ -39,6 +41,7 @@
                 'data-type' => $field->type,
                 'data-field' => $field->name,
                 'data-id' => $field->id,
+                'data-section' => $field->section,
                 'data-changed' => 'false',
             ]);
             break;
@@ -47,7 +50,7 @@
             echo Form::checkbox($field->name, $field->placeholder, 1, $value);
             break;
         case 'image':
-            //var_dump($content);
+            echo '<label>' . f($field->placeholder) . '</label>';
             echo '<img src="' . f($field->value) . '" width="30" id="image-preview-'
                 . f($field->name) . '">';
             echo Form::textInput($field->name, $field->value, [
@@ -55,6 +58,7 @@
                 'data-type' => $field->type,
                 'data-field' => $field->name,
                 'data-changed' => 'false',
+                'data-section' => $field->section,
                 'class' => 'field-input image-input',
                 'id' => 'image-' . $field->name . $field->id,
             ]);

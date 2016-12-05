@@ -19,15 +19,16 @@ $( document ).ready(function() {
             if($(this).data('changed') == 'true') {
                 var field = $(this);
                 var changes = {
+                    section: field.data('section'),
+                    key: field.data('name'),
                     type: field.data('type'),
-                    section: field.closest('.section-body').data('id'),
-                    field: field.data('field'),
                     value: field.val()
                 };
+                //console.log(changes);
                 $.post(adminUrl + '/api/field/update', changes)
                     .done(function(data) {
-                        console.log(data);
                         field.data('changed', 'false').removeClass('changed');
+                        $( '#page-preview' ).attr( 'src', function ( i, val ) { return val; });
                     });
             }
         });
@@ -50,7 +51,7 @@ $( document ).ready(function() {
             //console.log()
             $.post(adminUrl + '/api/section/order', {data:data})
                 .done(function(data) {
-                    console.log(data);
+                    //console.log(data);
                     $( '#page-preview' ).attr( 'src', function ( i, val ) { return val; });
                 });
         }

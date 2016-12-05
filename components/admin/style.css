@@ -88,6 +88,10 @@ ul.pages-list > li > a img {
     background-color: #FFED65;
 }
 
+.section-list .section-body label {
+    display: block;
+}
+
 .add-section {
     margin-top: 15px;
 }

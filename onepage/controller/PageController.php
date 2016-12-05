@@ -10,18 +10,54 @@ use Onepage\View\SpecialCss;
 
 class PageController {
     public function home() {
-        //var_dump(Section::select()->get());
         
         $page = Page::select()->where('default', 1)->firstOrFail();
-        //var_dump($page->id);
-        $sectionsModels = SectionModel::select()->where('page_id', $page->id)->get();
+        $this->buildPage($page);
+    }
+        
+    public function page($slug) {
+        $page = Page::select()->where('slug', $slug)->firstOrFail();
+        $this->buildPage($page);
+
+    }
+
+    private function buildPage($page) {
+        $fileName = $page->slug . '.html';
+        $templateFile = createPath(cache_path, $fileName);
+        
+        if($templateFile !== false) {
+            echo file_get_contents($templateFile);
+        } else {
+            $this->createHtmlFile($page, $fileName);
+        }
+
+        if(app_style === false) {
+            $this->createCssFile();
+        }
+
+        
+    }
+
+    private function createHtmlFile($page, $fileName) {
+        $sectionModels = SectionModel::select()
+            ->where('page_id', $page->id)
+            ->get();
 
         $sections = [];
 
-        foreach ($sectionsModels as $model) {
+        foreach ($sectionModels as $model) {
             $sections[] = new Section($model);
         }
+        ob_start();
+        Template::make('page', compact('sections'));
+        $html = ob_get_clean();
+        file_put_contents(cache_path . DIRECTORY_SEPARATOR . $fileName, $html);
+        echo $html;
+    }
 
+    private function createCssFile() {
+        $sections = SectionModel::select()->get();
+        $file = component_path . DIRECTORY_SEPARATOR .  'css' . DIRECTORY_SEPARATOR . 'main.css';
         $css = [];
         $specialCss = [];
         foreach($sections as $section) {
@@ -31,13 +67,6 @@ class PageController {
             }
             $specialCss[] = SpecialCss::getContent($section->template, $section->templateContent());
         }
-
-        minifyCss(array_merge($css, $specialCss), app_style);
-
-        //file_put_contents(app_style, implode($glue, $css) . $glue . implode($glue, $specialCss));
-
-        $view = Template::make('page', compact('sections'));
-
+        minifyCss(array_merge($css, $specialCss), $file);
     }
-
 }

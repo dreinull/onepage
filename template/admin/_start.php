@@ -12,8 +12,8 @@
     <title>Onepage Admin</title>
 
     <!-- BootstrAdminap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="<?php component('css', 'bootstrap.min.css'); ?>" rel="stylesheet">
+    <link href="<?php component('css', 'jquery-ui.css'); ?>" rel="stylesheet">
     <link href="<?php component('admin', 'style.css') ?>" rel="stylesheet">
 
 
