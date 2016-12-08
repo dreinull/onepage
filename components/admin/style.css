@@ -111,3 +111,8 @@ ul.pages-list > li > a img {
 #file-select .image-selected {
     outline: 2px solid red;
 }
+
+#file-select .image-upload {
+    min-height: 150px;
+    background-color: #ddd;
+}

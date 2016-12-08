@@ -88,7 +88,18 @@ $( document ).ready(function() {
                 $(imageTarget).data('changed', 'true').addClass('changed');
                 $(imagePreview).attr('src', imageSelected.attr('src'));
             });
-            $(this).find('.modal-body').dropzone({url: 'test/test'});
+            imageUpload = $(this).find('.image-upload'); 
+            imageUpload.dropzone({
+                url: adminUrl + '/api/image/upload',
+                autoProcessQueue: true,
+            });
+            imageUpload.on('sending', function(file) {
+                console.log(file);
+            });
+            imageUpload.on('addedfile', function(file) {
+                console.log(file);
+            });
+
         });
     });
 

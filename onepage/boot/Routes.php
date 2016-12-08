@@ -64,6 +64,7 @@ class Routes {
         $routes->add('admin-api-section-order', new Route('/admin/api/section/order', ['controller' => 'AdminController@apiSectionOrder']));
         $routes->add('admin-api-section-rename', new Route('/admin/api/section/rename', ['controller' => 'AdminController@apiSectionRename']));
         $routes->add('admin-api-image-select', new Route('/admin/api/image/select', ['controller' => 'AdminController@apiImageSelect']));
+        $routes->add('admin-api-image-upload', new Route('/admin/api/image/upload', ['controller' => 'AdminController@apiImageUpload']));
 
         $routes->add('login', new Route('/admin/login', ['controller' => 'UserController@getLogin']));
         $routes->add('login-post', new Route('/admin/login/post', ['controller' => 'UserController@postLogin']));

@@ -5,7 +5,9 @@ include '_start.php';
 ?>
 
 <div class="container-fluid">
-
+    <div class="row">
+        <div class="image-upload">Upload here</div>
+    </div>
     <div class="row">
         <div class="col-md-9">
             <?php foreach(array_chunk($images, 4) as $row) : ?>
